@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on ljcucc devblog</title>
+    <link>http://blog.ljcu.cc/posts/</link>
+    <description>Recent content in Posts on ljcucc devblog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Jan 2023 17:39:08 +0800</lastBuildDate><atom:link href="http://blog.ljcu.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Composable super simple computer - devlog - ep.1</title>
+      <link>http://blog.ljcu.cc/posts/cssc-2022-01-15/</link>
+      <pubDate>Sun, 15 Jan 2023 17:39:08 +0800</pubDate>
+      
+      <guid>http://blog.ljcu.cc/posts/cssc-2022-01-15/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
