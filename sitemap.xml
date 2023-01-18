@@ -2,14 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.ljcu.cc/categories/</loc>
+    <loc>/posts/cssc-03/</loc>
+    <lastmod>2023-01-23T23:59:59+08:00</lastmod>
   </url><url>
-    <loc>https://blog.ljcu.cc/</loc>
+    <loc>/tags/cssc-project/</loc>
+    <lastmod>2023-01-23T23:59:59+08:00</lastmod>
   </url><url>
-    <loc>https://blog.ljcu.cc/posts/first/</loc>
+    <loc>/</loc>
+    <lastmod>2023-01-23T23:59:59+08:00</lastmod>
   </url><url>
-    <loc>https://blog.ljcu.cc/posts/</loc>
+    <loc>/posts/</loc>
+    <lastmod>2023-01-23T23:59:59+08:00</lastmod>
   </url><url>
-    <loc>https://blog.ljcu.cc/tags/</loc>
+    <loc>/tags/</loc>
+    <lastmod>2023-01-23T23:59:59+08:00</lastmod>
+  </url><url>
+    <loc>/posts/cssc-02/</loc>
+    <lastmod>2023-01-19T23:59:59+08:00</lastmod>
+  </url><url>
+    <loc>/posts/cssc-01/</loc>
+    <lastmod>2023-01-18T23:59:59+00:00</lastmod>
+  </url><url>
+    <loc>/posts/cssc-00/</loc>
+    <lastmod>2023-01-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/</loc>
+  </url><url>
+    <loc>/posts/first/</loc>
   </url>
 </urlset>

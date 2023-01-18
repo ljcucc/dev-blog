@@ -2,17 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ljcucc devblog</title>
-    <link>https://blog.ljcu.cc/</link>
+    <link>/</link>
     <description>Recent content on ljcucc devblog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://blog.ljcu.cc/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Jan 2023 23:59:59 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSSC - EP.3 指令集解析</title>
+      <link>/posts/cssc-03/</link>
+      <pubDate>Mon, 23 Jan 2023 23:59:59 +0800</pubDate>
+      
+      <guid>/posts/cssc-03/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前幾天打疫苗不舒服，停更了一段時間。而且期末終於結束了，雖然後面會有很多混雜期末時所做的一些決定，但還是有更多時間去思考更多細節了 (´▽｀)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;專案進行中，我越意識到原來設計一個計算機架構並不是這麼簡單的一件事情⋯⋯我一開始是直接用腦袋想和模擬，但越到後面發現，uxn 基本指令集就有 32 個，加上3個mode組合後共有 256 個指令集，要為 256 個指令設計一個 CPU 對於一個剛入學的大學生真的是一個有挑戰性的事情⋯⋯&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSSC - EP.2: Homebrew a simple singal analyzer</title>
+      <link>/posts/cssc-02/</link>
+      <pubDate>Thu, 19 Jan 2023 23:59:59 +0800</pubDate>
+      
+      <guid>/posts/cssc-02/</guid>
+      <description>&lt;p&gt;在上一篇文章中，我提到了我已經完成了 Register A、B、ALU 的設計和實作。然而，在實際實作過程中，我發現在操作和調試訊號時如果只使用 LED 作為肉眼觀察工具，很難直接觀察到訊號的具體變化。因此，我決定來實現一個邏輯分析工具。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSSC - EP.1 : The starting point</title>
+      <link>/posts/cssc-01/</link>
+      <pubDate>Wed, 18 Jan 2023 23:59:59 +0000</pubDate>
+      
+      <guid>/posts/cssc-01/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;因為blog比較晚才架設的關係，所以累積了比較多的東西，會在後面幾個post一起補上。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;這次要介紹的元件的設計早在專案開始前的幾年前就已經在breadboard上實作過，這次因為剛好遇到學校的期末專題，就想要以重現之前的專案、實踐新的計畫為題，製作一個全新的CPU計畫。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSSC - EP.0 預告：來設計台計算機呢？ - Stack CPU </title>
+      <link>/posts/cssc-00/</link>
+      <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cssc-00/</guid>
+      <description>&lt;p&gt;因為學期末我們每個人都被老師要求在 數位電路設計 的課程中繳交一個至少以 74 系列所組裝出的作品，所以我突然有個大膽的想法，合不來設計台計算機呢？&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>New blog.ljc.cc - Brand new design and more !</title>
-      <link>https://blog.ljcu.cc/posts/first/</link>
+      <link>/posts/first/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://blog.ljcu.cc/posts/first/</guid>
-      <description>&lt;p&gt;In the brand new &lt;a href=&#34;https://blog.ljcu.cc&#34;&gt;https://blog.ljcu.cc&lt;/a&gt; , Introducing to the new typography design and fonts, and all website are generated from &lt;a href=&#34;https://hugo.io&#34;&gt;Hugo&lt;/a&gt; with my custom theme!&lt;/p&gt;</description>
+      <guid>/posts/first/</guid>
+      <description>&lt;p&gt;In the brand new &lt;a href=&#34;https://blog.ljcu.cc&#34;&gt;https://blog.ljcu.cc&lt;/a&gt; , Introducing to the new typography design and fonts, and all website are generated from &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; with my custom theme!&lt;/p&gt;</description>
     </item>
     
   </channel>

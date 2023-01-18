@@ -30,12 +30,17 @@ html {
   }
 } */
 
+p {
+  font-size: 14.5px !important;
+}
+
 body {
   font-size: 14.5px;
   color: var(--fontcolor);
   background: var(--bgcolor);
   font-weight: 300;
   margin:0;
+  -webkit-text-size-adjust: none;
 }
 
 a:link {
@@ -69,7 +74,13 @@ h1.post{
 p>code {
   color: var(--precolor);
   background: var(--prebgcolor);
-  padding: 2px
+  padding: 2px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+code{
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
 }
 
 pre {
@@ -200,6 +211,8 @@ article .content{
   overflow: hidden;
   display: inline-block;
   animation: marquee 30s linear infinite;
+
+  margin-bottom: -0.2rem;
 }
 
 .marquee *{
