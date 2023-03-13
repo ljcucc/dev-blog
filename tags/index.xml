@@ -6,7 +6,16 @@
     <description>Recent content in Tags on ljcucc blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Mar 2023 08:00:00 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dev-log</title>
+      <link>/tags/dev-log/</link>
+      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dev-log/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>活化石</title>
       <link>/tags/%E6%B4%BB%E5%8C%96%E7%9F%B3/</link>

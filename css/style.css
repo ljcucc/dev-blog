@@ -17,6 +17,8 @@ html {
 
 * {
   font-family: 'Work Sans', sans-serif;
+  letter-spacing: 0.1pt;
+  line-height: 1.6rem;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -31,6 +33,7 @@ html {
 } */
 
 p {
+  margin: 24pt auto;
   font-size: 14.5px !important;
 }
 
@@ -64,6 +67,7 @@ h3 {
 
 h1, h2{
   font-size: 30px;
+  margin-top: 50pt;
 }
 
 h1.post{

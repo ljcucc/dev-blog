@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dev-log on ljcucc blog</title>
+    <link>/tags/dev-log/</link>
+    <description>Recent content in dev-log on ljcucc blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/dev-log/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wiki rebrand - Update 2023-03</title>
+      <link>/posts/update-2023-03/</link>
+      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/update-2023-03/</guid>
+      <description>&lt;p&gt;這個月我致力於更新 我的個人知識庫，讓我統整的知識有一個可以展現的平台。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
