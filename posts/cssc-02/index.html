@@ -49,10 +49,12 @@
 	<main>
 		<article>
 			<h1 class="post">CSSC - EP.2: Homebrew a simple singal analyzer</h1>
+			<div class="metadata">
 			<b><time>2023-01-19 23:59:59</time></b>
 		       
 		           <a href="/tags/cssc-project">CSSC Project</a>
         	       
+			</div>
 
 			<div class="content">
 				<p>在上一篇文章中，我提到了我已經完成了 Register A、B、ALU 的設計和實作。然而，在實際實作過程中，我發現在操作和調試訊號時如果只使用 LED 作為肉眼觀察工具，很難直接觀察到訊號的具體變化。因此，我決定來實現一個邏輯分析工具。</p>
@@ -300,4 +302,39 @@ void loop() {
 </footer>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+
+window.addEventListener("load", ()=>{
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content>*, .summary";
+  gsap.set(selector, { opacity: 1 });
+
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach(item=>{
+    
+    gsap.from(item, {
+      ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+      delay: 0.35,
+      duration: 0.5,
+      y: 20,
+      autoAlpha: 0.15,
+      stagger: 0.15,
+      lazy: true,
+      scrollTrigger:{
+        trigger: item,
+        start: 'top 80%', 
+      },
+    });
+  })
+
+
+});
+</script>
 </html>

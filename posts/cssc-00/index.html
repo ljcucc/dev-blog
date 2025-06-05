@@ -49,10 +49,12 @@
 	<main>
 		<article>
 			<h1 class="post">CSSC - EP.0 預告：來設計台計算機呢？ - Stack CPU </h1>
+			<div class="metadata">
 			<b><time>2023-01-17 00:00:00</time></b>
 		       
 		           <a href="/tags/cssc-project">CSSC Project</a>
         	       
+			</div>
 
 			<div class="content">
 				<p>因為學期末我們每個人都被老師要求在 數位電路設計 的課程中繳交一個至少以 74 系列所組裝出的作品，所以我突然有個大膽的想法，合不來設計台計算機呢？</p>
@@ -110,4 +112,39 @@
 </footer>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+
+window.addEventListener("load", ()=>{
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content>*, .summary";
+  gsap.set(selector, { opacity: 1 });
+
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach(item=>{
+    
+    gsap.from(item, {
+      ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+      delay: 0.35,
+      duration: 0.5,
+      y: 20,
+      autoAlpha: 0.15,
+      stagger: 0.15,
+      lazy: true,
+      scrollTrigger:{
+        trigger: item,
+        start: 'top 80%', 
+      },
+    });
+  })
+
+
+});
+</script>
 </html>

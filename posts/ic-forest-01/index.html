@@ -49,10 +49,12 @@
 	<main>
 		<article>
 			<h1 class="post">Ichigojam - 集成晶體森林 裡的 活化石 (1)</h1>
+			<div class="metadata">
 			<b><time>2023-03-01 08:00:00</time></b>
 		       
 		           <a href="/tags/%E6%B4%BB%E5%8C%96%E7%9F%B3">活化石</a>
         	       
+			</div>
 
 			<div class="content">
 				<p>這次我前往日本，尋找 集成晶體森林 裡的 活化石。</p>
@@ -134,4 +136,39 @@
 </footer>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+
+window.addEventListener("load", ()=>{
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content>*, .summary";
+  gsap.set(selector, { opacity: 1 });
+
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach(item=>{
+    
+    gsap.from(item, {
+      ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+      delay: 0.35,
+      duration: 0.5,
+      y: 20,
+      autoAlpha: 0.15,
+      stagger: 0.15,
+      lazy: true,
+      scrollTrigger:{
+        trigger: item,
+        start: 'top 80%', 
+      },
+    });
+  })
+
+
+});
+</script>
 </html>

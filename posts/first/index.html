@@ -49,8 +49,10 @@
 	<main>
 		<article>
 			<h1 class="post">New blog.ljc.cc - Brand new design and more !</h1>
+			<div class="metadata">
 			<b><time>0001-01-01 00:00:00</time></b>
 		       
+			</div>
 
 			<div class="content">
 				<p>In the brand new <a href="https://blog.ljcu.cc">https://blog.ljcu.cc</a> , Introducing to the new typography design and fonts, and all website are generated from <a href="https://gohugo.io">Hugo</a> with my custom theme!</p>
@@ -99,4 +101,39 @@
 </footer>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+
+window.addEventListener("load", ()=>{
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content>*, .summary";
+  gsap.set(selector, { opacity: 1 });
+
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach(item=>{
+    
+    gsap.from(item, {
+      ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+      delay: 0.35,
+      duration: 0.5,
+      y: 20,
+      autoAlpha: 0.15,
+      stagger: 0.15,
+      lazy: true,
+      scrollTrigger:{
+        trigger: item,
+        start: 'top 80%', 
+      },
+    });
+  })
+
+
+});
+</script>
 </html>

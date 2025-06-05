@@ -73,12 +73,14 @@
 	<main>
 		<article>
 			<h1 class="post">在有限空間的電腦上跑大檔案的 docker 儲存</h1>
+			<div class="metadata">
 			<b><time>2025-06-05 00:00:00</time></b>
 		       
 		           <a href="/tags/dev-log">dev-log</a>
         	       
 		           <a href="/tags/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98">技術筆記</a>
         	       
+			</div>
 
 			<div class="content">
 				<p>大家好！最近我手邊一台閒置已久的 Chromebook，心想著別讓它白白吃灰，就動了念頭想把它變成我的 Docker 開發簡單的伺服器。畢竟，用一台輕量級的機器來跑一些輕量的服務，很多事情都會方便很多。</p>
@@ -252,4 +254,39 @@
 </footer>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+
+window.addEventListener("load", ()=>{
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content>*, .summary";
+  gsap.set(selector, { opacity: 1 });
+
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach(item=>{
+    
+    gsap.from(item, {
+      ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+      delay: 0.35,
+      duration: 0.5,
+      y: 20,
+      autoAlpha: 0.15,
+      stagger: 0.15,
+      lazy: true,
+      scrollTrigger:{
+        trigger: item,
+        start: 'top 80%', 
+      },
+    });
+  })
+
+
+});
+</script>
 </html>

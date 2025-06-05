@@ -166,6 +166,7 @@ footer {
 }
 
 header {
+  z-index: 100;
   border-bottom: 1.5px solid black;
   display: flex;
   flex-direction: row;

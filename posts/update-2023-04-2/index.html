@@ -49,10 +49,12 @@
 	<main>
 		<article>
 			<h1 class="post">你有找到使用工具時開心的人嗎？</h1>
+			<div class="metadata">
 			<b><time>2023-04-14 00:00:00</time></b>
 		       
 		           <a href="/tags/dev-log">dev-log</a>
         	       
+			</div>
 
 			<div class="content">
 				<p>「啊！啊！啊！啊！」 充斥在 「啊！設計」的主題曲中，象徵著設計師所設計的細節都像一種表達和表現，是設計師有意設計下的產物。每當我們仔細觀察，看見這些細節時，難免都會在心裡甚至表情上頭露出新奇的喜悅 —— 「啊！ 原來如此！」。</p>
@@ -137,4 +139,39 @@
 </footer>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script>
+
+window.addEventListener("load", ()=>{
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content>*, .summary";
+  gsap.set(selector, { opacity: 1 });
+
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach(item=>{
+    
+    gsap.from(item, {
+      ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+      delay: 0.35,
+      duration: 0.5,
+      y: 20,
+      autoAlpha: 0.15,
+      stagger: 0.15,
+      lazy: true,
+      scrollTrigger:{
+        trigger: item,
+        start: 'top 80%', 
+      },
+    });
+  })
+
+
+});
+</script>
 </html>
