@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>
+	  body{
+			font-family:monospace;
+		}
+
+	</style>
+	<title>CSSC - EP.1 : The starting point</title>
+	<meta name="description" content="Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+
+  
+
+
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+</head>
+<body>
+	<header>
+  
+
+  <div class="title">
+    <a href="/zh-tw/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
+
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
+
+  <div class="title menu">
+    <a href="/zh-tw/tags" class="no-underline">menu</a>
+  </div>
+
+  
+</header>
+
+	
+	<main>
+		<article>
+			<h1 class="post">CSSC - EP.1 : The starting point</h1>
+			<div class="metadata">
+			<b><time>2023-01-18 23:59:59</time></b>
+		       
+		           <a href="/zh-tw/tags/cssc-project">CSSC Project</a>
+        	       
+		           <a href="/zh-tw/tags/"></a>
+        	       
+			</div>
+
+			
+<p>
+   Available in 
+  <a href="/posts/cssc-01/" hreflang="en-US">
+    English
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
+			<div class="content">
+				<blockquote>
+<p>因為blog比較晚才架設的關係，所以累積了比較多的東西，會在後面幾個post一起補上。</p></blockquote>
+<p>這次要介紹的元件的設計早在專案開始前的幾年前就已經在breadboard上實作過，這次因為剛好遇到學校的期末專題，就想要以重現之前的專案、實踐新的計畫為題，製作一個全新的CPU計畫。</p>
+<p>.</p>
+<h2 id="基礎架構的設計">基礎架構的設計</h2>
+<p>為了交作業，將就採用之前已經在breadboard實作過的設計。主要是參考自 ben eater 8 bits breadboard CPU 的 project，也是絕大部分的設計的啟發點。</p>
+<p>目前已經完成的主要實作點有兩個：</p>
+<ul>
+<li>ALU（同ben eater 專案中的ALU，但目前沒有實作flags）</li>
+<li>Register A、B（同ben eater 專案中的Register A、B）</li>
+</ul>
+<p>ALU（算術邏輯單元）是一種硬體元件，主要負責處理算術運算和邏輯運算。Registers 是一種電腦內存，用於存儲和訪問資料。</p>
+<p>在我們的設計中，Register A 和 B 用於存儲加法和減法運算的兩個數值。ALU目前只有加減法功能，但我們可以用一些小技巧來實現其他功能，例如位元移動等。</p>
+<p>我們的ALU能夠實現的功能包含加法、減法，但不包含與、或、還有比較運算，這些運算在運算過程中會用到 Register A 與 B 來儲存資料。當ALU執行運算後，結果可以存在一個結果register中，供後續程式使用。另外，我們也計畫擴充ALU的功能，例如乘法、除法等運算。</p>
+<p>總的來說，ALU和Registers是我們電腦設計中不可或缺的元件，它們提供了快速、高效的運算能力，為後續的程式執行提供了基礎。</p>
+<p>.</p>
+<h1 id="為什麼不用-breadboard">為什麼不用 breadboard？</h1>
+<p>在使用 breadboard 進行電路實驗時，有一個重要的因素需要注意，那就是 breadboard 的不固定性。由於 breadboard 的接腳不是固定的，因此在插拔電子元件、運輸移動時可能會造成接觸不良，導致電路無法正常運作。</p>
+<p>因此，為了避免 breadboard 的不固定性導致的接觸不良問題，我決定使用直接焊接的方式，將電子元件焊在萬用板（General purpose PCB）上。這樣可以確保電路更穩定、更可靠，並且可以長期使用，運輸時電路也不太容易受到影響，這樣我就可以運到學校教作業。</p>
+<p>.</p>
+<h1 id="設計的實作">設計的實作</h1>
+<p>
+<figure>
+  <img src="./p1.jpg" alt="" />
+</figure>
+
+
+</p>
+<p><em>上圖為最終拼裝結果</em></p>
+<p><em>圖片左側被裁切掉的鐵盒子是一個 5V 10A 的電源供應器。</em></p>
+<p>.</p>
+<p>為了要讓整體收納更方便，我決定在測試每個板子的功能正常後，將電腦的架構改為塔式主機。這種架構可以將主機板、顯示卡、硬碟等主要元件組合在一起，並放置在一個單獨的塔狀箱體內，使得整體收納更為方便。</p>
+<p>然而，這樣的架構帶來了一些困難。首先，因為整個電腦組件都被密封在塔狀箱體內，所以debug的方便性受到了影響。如果出現問題，我們需要打開整個箱體才能檢查內部組件。另外，塔式主機的散熱也比較困難，我們需要在設計時對散熱問題進行充分考慮。</p>
+<p>尽管如此，我還是選擇犧牲了debug的方便性，換取塔式主機架構的方便性。因為在我們的項目中，收納的方便性是一個很重要的因素，我們需要將電腦組件安置在最小的空間內，以達到最佳的收納效果。</p>
+<p>.</p>
+<h1 id="部件介紹">部件介紹</h1>
+<p>接下來是部件的實際圖片。</p>
+<p>
+<figure>
+  <img src="p4.png" alt="" />
+</figure>
+
+
+</p>
+<p><em>圖中展示了各元件之間的關係圖。其中包含兩部分： Register（具有 Output 之直接連接 ALU 單元的性質）、ALU （目前僅具有加減法運算功能）。</em></p>
+<p>剛剛介紹過了，元件大致上有兩種：</p>
+<ul>
+<li>Register（Output 直通 ALU 單元）</li>
+<li>ALU （目前只有加減法）</li>
+</ul>
+<h2 id="register-ab">Register (A,B)</h2>
+<p>
+<figure>
+  <img src="./p2.jpg" alt="" />
+</figure>
+
+
+</p>
+<p>這個部分的主題是 Register (A,B)，附有一張圖片來呈現它的外觀。設計的參考來源是 <a href="https://eater.net/8bit/registers">Ben Eater 的 Register 設計</a>，但是我們對於 bus 接口和 internal connection to ALU 進行了修改，並對公排針 pinout 進行了調整。這個設計是一個重要的部分，用於存儲加法和減法運算的兩個數值。</p>
+<p>.</p>
+<h2 id="alu">ALU</h2>
+<p>
+<figure>
+  <img src="./p3.jpg" alt="" />
+</figure>
+
+
+</p>
+<p>這個部分的主題是 ALU，附有一張圖片來呈現它的外觀。設計的參考來源是 <a href="https://eater.net/8bit/alu">Ben Eater 的 ALU 設計</a>，但是我們對於 bus 接口和ALU output的debug 進行了修改，並對公排針 pinout 進行了調整。ALU (Arithmetic Logic Unit)是電腦硬體中的一個重要部分，負責處理算術運算和邏輯運算。我們的ALU能夠實現的功能包含加法、減法，這些運算在運算過程中會用到 Register A 與 B 來儲存資料。</p>
+<p>.</p>
+<h2 id="頂層-breadboard">頂層 breadboard</h2>
+<p>在最初的實作過程中，我最初的目的是避免使用 breadboard。然而在進行實作時，我發現自己在使用萬用板，並把電子元件使用排母放置在板子上並進行互相連結，這樣的操作方式與 breadboard 沒有本質上的區別。因此，為了能夠更加有效率地實現電路運作，我最終決定放棄使用萬用板，而改用 breadboard 來實現電路運作。</p>
+<h1 id="下一篇">下一篇</h1>
+<p>在進行實驗過程中，我意識到我缺少一種工具，即 邏輯分析儀，以便評估我所使用元件的訊號輸入和輸出。然而，當時我沒有在此事情上花太多時間思考。在後來參考了 Ben Eater 在 6502 computer 中使用 Arduino 當 邏輯分析儀的實例後，我也決定使用 Arduino 來製作一個簡單的 邏輯分析工具。</p>
+<p>下一篇會簡述我使用了什麼方法，如何利用 Arduino 以及 processing 來製作這個簡單的 邏輯分析工具及其對應的軟體。</p>
+<p><a href="/zh-tw/posts/cssc-02/">下一篇</a></p>
+
+				<aside>
+  <div>
+    <div>
+      <h3>Latest Posts</h3>
+    </div>
+    <div>
+      <ul>
+        
+        <li><a href="/zh-tw/posts/2025-06-05-docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        
+        <li><a href="/zh-tw/posts/2025-03-15-travel-to-kenting/">用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</a></li>
+        
+        <li><a href="/zh-tw/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        
+        <li><a href="/zh-tw/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        
+        <li><a href="/zh-tw/posts/cssc-03/">CSSC - EP.3 指令集解析</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+			</div>
+		</article>
+	</main>
+
+
+	<footer>
+	<div>&copy; 2025 - <a class="no-underline" href="/"><b>ljcucc blog</b></a>
+	×
+	(<a class="no-underline" href="https://ljcu.cc"><b>Homesite</b></a>)
+	×
+	(<a class="no-underline" href="https://furries.init.engineer/@wolf"><b>Fediverse</b></a>)
+	×
+	(<a class="no-underline" href="https://bsky.app/profile/ljcu.cc"><b>Bluesky</b></a>)
+	×
+	(<a class="no-underline" href="https://github.com/ljcucc"><b>Github</b></a>)
+	</div>
+</footer>
+
+</body>
+
+<script>
+
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
+  gsap.set(selector, { opacity: 1 });
+
+  const beforeOpacity = 0;
+
+  gsap.from(selector, {
+    delay: 0.35,
+        ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+        duration: 0.6,
+        y: 8,
+        autoAlpha: beforeOpacity,
+        stagger: 0.05,
+        lazy: true,
+      });
+</script>
+</html>

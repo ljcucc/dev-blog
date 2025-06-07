@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>
+	  body{
+			font-family:monospace;
+		}
+
+	</style>
+	<title>CSSC - EP.2: Homebrew a simple singal analyzer</title>
+	<meta name="description" content="Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+
+  
+
+
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+</head>
+<body>
+	<header>
+  
+
+  <div class="title">
+    <a href="/zh-tw/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
+
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
+
+  <div class="title menu">
+    <a href="/zh-tw/tags" class="no-underline">menu</a>
+  </div>
+
+  
+</header>
+
+	
+	<main>
+		<article>
+			<h1 class="post">CSSC - EP.2: Homebrew a simple singal analyzer</h1>
+			<div class="metadata">
+			<b><time>2023-01-19 23:59:59</time></b>
+		       
+		           <a href="/zh-tw/tags/cssc-project">CSSC Project</a>
+        	       
+			</div>
+
+			
+<p>
+   Available in 
+  <a href="/posts/cssc-02/" hreflang="en-US">
+    English
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
+			<div class="content">
+				<p>在上一篇文章中，我提到了我已經完成了 Register A、B、ALU 的設計和實作。然而，在實際實作過程中，我發現在操作和調試訊號時如果只使用 LED 作為肉眼觀察工具，很難直接觀察到訊號的具體變化。因此，我決定來實現一個邏輯分析工具。</p>
+<p>邏輯分析儀是一種用於分析電子產品的工具，它可以檢測和記錄電子產品的訊號，並將其轉換為數字或圖形以便觀察和分析。邏輯分析儀的使用可以提高電子產品的設計和開發效率，並使得調試過程更加有效率。但身為學生的我雖然也想用邏輯分析，但是如果要完全把 計算機 的每個腳位都插上 debug 除了增加了邏輯分析儀的成本，對於邏輯分析儀器的購買我也無從下手。</p>
+<p>所以在一個禮拜期限的迫使下，我使用了 Arduino 和 Processing 來實現一個簡單的邏輯分析工具。 Processing 是一種開源的程式語言和環境，它可以用於創建互動式圖形和動畫。</p>
+<h2 id="為什麼選擇processing">*為什麼選擇Processing？</h2>
+<p>在進行邏輯分析工具的設計過程中，我選擇了使用 Processing 作為快速sketching開發的原因是除了因為它支援Serial的Library，Processing常在 Creative Coding裡扮演快速雛形的角色。他簡潔的語法與API的設計，讓快速構建雛形變得更容易，這對只有一個禮拜要把東西趕出來的我更是加分。</p>
+<h2 id="為什麼要用arduino不去買邏輯分析儀">*為什麼要用Arduino不去買邏輯分析儀？</h2>
+<p>除了時間上的因素外，我也想要在這個專案上很多東西如果可以，可以自己動手做做看。除此之外在這段期間我也發現其實可以通過I/O Expander來進行I/O的擴容，這讓我使用Arduino自製的動力大增。</p>
+<h2 id="空接問題-和-pullup-resistor">空接問題 和 Pullup resistor</h2>
+<p>一開始寫好後發現大多數的腳位都呈現不規律地狀態，就算沒有接上任何腳位（空接），可能是因為大多數的IC都是TTL的IC，從晶片的型號上就可以看出：74[LS]？？ <em>或者可以從V_min 或 V_max看出預設空接的狀態是什麼⋯⋯</em></p>
+<blockquote>
+<p>補充：在TTL電路中空接會導致電路運行不穩定，因為電流不能得到有效控制。為了避免TTL電路的空接，通常會使用pull-up resistor。這是一種電阻，它連接在輸入端的高電位與地面之間。這樣可以確保電路有一個高電位的參考點，避免電路運行不穩定。在 Arduino 中，可以使用內置的 digitalRead() 函式來讀取輸入端的電位，但是若輸入端未被接通時，電路將會運行不穩定。因此，在使用輸入端時，可以使用 Arduino 內置的 INPUT_PULLUP 電路來設定 pull-up resistor。</p></blockquote>
+<h2 id="attachinterrupt">attachInterrupt</h2>
+<p>接下來我發現了頻率的問題，因為每次傳輸的資料有限，所以如果不斷平凡的傳輸每隔輸入的狀態可能會導致緩存塞車或者是漏接等等情況。 基於這個原因，我的解決方法是使用 Arduino 的 attachInterrupt。</p>
+<blockquote>
+<p>補充：在 Arduino 中，attachInterrupt 是一種函式，它可以設置中斷服務程序，讓您的程式可以在特定事件發生時執行。通常，Arduino 的主程式會不斷執行，而中斷服務程序則是在特定事件發生時執行。例如，當一個按鈕被按下時，中斷服務程序就會被執行。這樣的設計方式可以讓程式在不會影響主程式執行的情況下，響應某些特定事件。通過使用 attachInterrupt 函式，您可以將中斷服務程序與特定的 IO 引腳相關聯。例如，您可以將中斷服務程序與按鈕引腳相關聯，以便在按鈕被按下時執行中斷服務程序。</p></blockquote>
+<p>但在這裡我就採用 D2 作為 attachInterrupt 的 pin， 一旦這個輸入有任何的變化，那就會觸發中斷。 在Arduino 上能支援這種中斷模式的腳位並不多，pin 2 是其中一個（對於我使用的 Arduino Mega 來說）。</p>
+<h2 id="結論">結論</h2>
+<p>因為時間有限，我能做的研究和完成的完整度也是有限的。但是在期末災難結束後，我應該就有更多的時間可以自由發揮了⋯⋯ 期待下一集建構 CPU 時發現的更多事～</p>
+<p>(´▽｀)</p>
+<p><a href="/zh-tw/posts/cssc-03/">下一篇</a></p>
+<h2 id="附錄原始碼和最終結果">附錄：原始碼和最終結果</h2>
+<p>以下就直接公開了原始碼，因為只是個簡單的工具，所以沒幾行：</p>
+<p>processing:</p>
+<pre tabindex="0"><code>import processing.serial.*;
+
+final int SIZE = 11;
+
+Serial device;
+byte[] input;
+int hi = 100000000;
+PGraphics view;
+float scaling = 1;
+int viewPosX = 0, viewPosY = 0;
+
+void setup() {
+  size(800, 600);
+  pixelDensity(2);
+
+  view = createGraphics(800, 600);
+  
+  print(Serial.list()[1]);
+  
+  device = new Serial(this, Serial.list()[1], 115200);
+  delay(10);
+  device.write(&#39;b&#39;);
+  
+  // avoid nullPointException
+  view.beginDraw();
+  view.endDraw();
+}
+
+void draw() {
+  background(255);
+  
+  
+  if (hi &gt; width) {
+    hi = SIZE;
+    device.write(&#39;s&#39;);
+    view.clear();
+    view.background(255);
+  }
+
+  while (device.available() &gt; 0) {
+    view.beginDraw();
+    String input = device.readStringUntil(&#39;\n&#39;);
+
+    if (input == null) continue;
+    if (input.length() != 56) continue;
+
+    for (int i = 2; i &lt; 54; i++) {
+      if (input.charAt(i) != &#39;0&#39; &amp;&amp; input.charAt(i) != &#39;1&#39;) continue;
+
+      view.fill(0, input.charAt(i) == &#39;1&#39;? 255: 100, 100);
+      view.rect(hi, SIZE*i, SIZE, SIZE);
+    }
+
+    //view.line(hi, 0, hi, height);
+
+    hi+=SIZE;
+
+    device.clear();
+
+    view.fill(0);
+    view.textSize(SIZE);
+
+    for (int i = 2; i &lt; 54; i++)
+      view.text(String.valueOf(i), 0, (i+1)*SIZE);
+      
+    view.endDraw();
+  }
+  
+  image(view, 0 + viewPosX, 0 + viewPosY, 800 * scaling, 600 * scaling);
+}
+
+String numBuf = &#34;0&#34;;
+
+int toNonZero(int num){
+  return num == 0? 1: num;
+}
+
+void keyPressed() {
+  switch(key) {
+  case &#39;+&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      scaling += 0.1;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;-&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      scaling -= 0.1;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;h&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosX += 10;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;l&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosX -= 10;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;j&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosY -= 10;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;k&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosY += 10;
+    numBuf = &#34;0&#34;;
+    break;
+  default:
+    if (key &lt;= &#39;9&#39; &amp;&amp; key &gt;= &#39;0&#39;) {
+      numBuf += key;
+    }
+    break;
+  }
+}
+</code></pre><p>Arduino:</p>
+<pre tabindex="0"><code>char input[54];
+char readBuf[54];
+
+void setMode(char* modes) {
+  for (int i = 2; i &lt; 54; i++)
+    pinMode(i, modes[i] == &#39;1&#39; ? OUTPUT : INPUT);
+}
+
+void writePin(char* data) {
+  for (int i = 2; i &lt; 54; i++)
+    digitalWrite(i, data[i] == &#39;1&#39; ? HIGH : LOW);
+}
+
+void readPin() {
+  readBuf[0] = 1;
+  readBuf[1] = 1;
+  for (int i = 2; i &lt; 54; i++)
+    readBuf[i] = digitalRead(i) == HIGH ? &#39;1&#39; : &#39;0&#39;;
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  Serial.println(&#34;start&#34;);
+
+  for (int i = 2; i &lt; 54; i++) {
+    pinMode(i, INPUT_PULLUP);
+  }
+
+  attachInterrupt(digitalPinToInterrupt(2), updateInfo, CHANGE);
+}
+
+void updateInfo() {
+  readPin();
+  readBuf[54] = 0;
+  Serial.println(readBuf);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+}
+</code></pre><blockquote>
+<p><em>程式可能沒有寫的很完整，但結構很簡單，可以先看看裡面寫了些什麼，這裡就不多語了</em></p></blockquote>
+<p><em>下圖為最終Processing的結果</em>
+
+<figure>
+  <img src="./p1.jpg" alt="" />
+</figure>
+
+
+</p>
+<p><em>下圖為此專案使用的Arduino Mega</em>
+
+<figure>
+  <img src="./p2.jpg" alt="" />
+</figure>
+
+
+</p>
+
+				<aside>
+  <div>
+    <div>
+      <h3>Latest Posts</h3>
+    </div>
+    <div>
+      <ul>
+        
+        <li><a href="/zh-tw/posts/2025-06-05-docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        
+        <li><a href="/zh-tw/posts/2025-03-15-travel-to-kenting/">用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</a></li>
+        
+        <li><a href="/zh-tw/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        
+        <li><a href="/zh-tw/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        
+        <li><a href="/zh-tw/posts/cssc-03/">CSSC - EP.3 指令集解析</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+			</div>
+		</article>
+	</main>
+
+
+	<footer>
+	<div>&copy; 2025 - <a class="no-underline" href="/"><b>ljcucc blog</b></a>
+	×
+	(<a class="no-underline" href="https://ljcu.cc"><b>Homesite</b></a>)
+	×
+	(<a class="no-underline" href="https://furries.init.engineer/@wolf"><b>Fediverse</b></a>)
+	×
+	(<a class="no-underline" href="https://bsky.app/profile/ljcu.cc"><b>Bluesky</b></a>)
+	×
+	(<a class="no-underline" href="https://github.com/ljcucc"><b>Github</b></a>)
+	</div>
+</footer>
+
+</body>
+
+<script>
+
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
+  gsap.set(selector, { opacity: 1 });
+
+  const beforeOpacity = 0;
+
+  gsap.from(selector, {
+    delay: 0.35,
+        ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+        duration: 0.6,
+        y: 8,
+        autoAlpha: beforeOpacity,
+        stagger: 0.05,
+        lazy: true,
+      });
+</script>
+</html>

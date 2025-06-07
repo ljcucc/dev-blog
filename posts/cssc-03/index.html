@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,12 +10,13 @@
 		}
 
 	</style>
-	<title>CSSC - EP.3 指令集解析</title>
+	<title>CSSC - EP.3: Instruction Set Analysis</title>
 	<meta name="description" content="Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
 	
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
+
   
 
 
@@ -25,35 +26,33 @@
 </head>
 <body>
 	<header>
-	
+  
 
-	<div class="title">
-		<a href="/" class="no-underline">ljcucc blog</a>
-	</div>
+  <div class="title">
+    <a href="/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
 
-	<div class="wrapper">
-		<div class="marquee">
-			
-			<p>
-				Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org
-			</p>
-			<p>
-				Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org
-			</p>
-		</div>
-	</div>
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
 
-	<div class="title menu">
-		<a href="/tags" class="no-underline">menu</a>
-	</div>
+  <div class="title menu">
+    <a href="/tags" class="no-underline">menu</a>
+  </div>
 
-	
+  
 </header>
 
 	
 	<main>
 		<article>
-			<h1 class="post">CSSC - EP.3 指令集解析</h1>
+			<h1 class="post">CSSC - EP.3: Instruction Set Analysis</h1>
 			<div class="metadata">
 			<b><time>2023-01-23 23:59:59</time></b>
 		       
@@ -61,17 +60,29 @@
         	       
 			</div>
 
+			
+<p>
+   Available in 
+  <a href="/zh-tw/posts/cssc-03/" hreflang="zh-TW">
+    繁體中文
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
 			<div class="content">
 				<blockquote>
-<p>前幾天打疫苗不舒服，停更了一段時間。而且期末終於結束了，雖然後面會有很多混雜期末時所做的一些決定，但還是有更多時間去思考更多細節了 (´▽｀)</p>
-</blockquote>
-<p>專案進行中，我越意識到原來設計一個計算機架構並不是這麼簡單的一件事情⋯⋯我一開始是直接用腦袋想和模擬，但越到後面發現，uxn 基本指令集就有 32 個，加上3個mode組合後共有 256 個指令集，要為 256 個指令設計一個 CPU 對於一個剛入學的大學生真的是一個有挑戰性的事情⋯⋯</p>
-<p>首先，我沒有任何設計CPU的經驗，再此我只能用最熟悉的方式去思考與分析。</p>
+<p>A few days ago, I felt unwell after getting a vaccine, so I paused updates for a while. And finally, the semester is over! Although there will be many decisions influenced by what I made during the finals period, I now have more time to think about more details (´▽｀)</p></blockquote>
+<p>As the project progressed, I realized more and more that designing a computer architecture is not such a simple task&hellip; Initially, I just brainstormed and simulated in my head, but later on, I found that Uxn&rsquo;s basic instruction set alone has 32 instructions, and with 3 mode combinations, there are a total of 256 instructions. Designing a CPU for 256 instructions is truly a challenging endeavor for a university freshman&hellip;</p>
+<p>Firstly, I have no experience designing a CPU. Therefore, I can only think and analyze using the methods I am most familiar with.</p>
 <h2 id="uxn">Uxn</h2>
 <ul>
-<li>Uxn 是一個為全平台設計的虛擬機，目的是簡單的設計但為實現多樣的可能性</li>
-<li>Uxn 內建 Stack, Return Stack、Device I/O (<a href="https://wiki.xxiivv.com/site/varvara.html">Varvara</a>)，分別可以以不同的指令訪問。</li>
-<li>可以使用 <a href="https://wiki.xxiivv.com/site/uxntal.html">Uxntal (組語)</a> 和 <a href="https://wiki.xxiivv.com/site/bicycle.html">bicycle (組譯器)</a> 來組譯 uxn 的 ROM</li>
+<li>Uxn is a virtual machine designed for all platforms, aiming for a simple design yet enabling diverse possibilities.</li>
+<li>Uxn has built-in Stack, Return Stack, and Device I/O (<a href="https://wiki.xxiivv.com/site/varvara.html">Varvara</a>), which can be accessed with different instructions.</li>
+<li>You can use <a href="https://wiki.xxiivv.com/site/uxntal.html">Uxntal (assembly language)</a> and <a href="https://wiki.xxiivv.com/site/bicycle.html">bicycle (assembler)</a> to assemble Uxn&rsquo;s ROM.</li>
 </ul>
 <p>
 <figure>
@@ -80,13 +91,7 @@
 
 
 </p>
-<p><em>Uxn 會從 ROM 的 位址 0x0100 載入到 RAM 的 0x0100，通常在 ROM 內 0x0100 以前都會是空的。</em></p>
-<!-- 以上是我對 uxn 架構的想像圖，實際上uxn因為是虛擬機的關係，並不存在任何架構關係的問題。也因為他是虛擬機的關係，所以這個關係圖也沒有任何作用，存粹讓你可以更好地理解 uxn 有哪些重要的功能和部件。 -->
-<!-- 所以首先，我想要先做幾件事情來幫助我理解 uxn ：
-
-* 理解每個 uxn 的指令：在接下來的幾篇文章中我會盡可能理解每個指令所需的必須操作
-* 歸納 uxn 的每個指令：歸納出 uxn 指令之間的關係，簡化處理器的設計
-* 選擇適合的控制單元和處理器指令集設計：在後續的幾個文章中我會試著探索不同的指令集實作架構，並且嘗試選擇和設計適合的架構 -->
+<p><em>Uxn loads from ROM address 0x0100 into RAM address 0x0100; typically, the ROM before 0x0100 is empty.</em></p>
 <h2 id="uxntal">Uxntal</h2>
 <p>
 <figure>
@@ -95,25 +100,25 @@
 
 
 </p>
-<p>Uxntal 和 uxn 密不可分，Uxntal 是轉為 uxn 設計的組語。對於基礎opcode uxn共有32個，並且分成 4 個區。</p>
+<p>Uxntal and Uxn are inseparable; Uxntal is the assembly language designed for Uxn. For basic opcodes, Uxn has 32, divided into 4 sections.</p>
 <ul>
-<li><code>00~07</code> 是基礎的 stack operation</li>
-<li><code>08~0f</code> 是邏輯運算和 branch instruction</li>
-<li><code>10~17</code> 是直接對memory進行操作</li>
-<li><code>18~1f</code> 是 ALU 數學運算</li>
+<li><code>00~07</code> are basic stack operations</li>
+<li><code>08~0f</code> are logical operations and branch instructions</li>
+<li><code>10~17</code> are direct memory operations</li>
+<li><code>18~1f</code> are ALU mathematical operations</li>
 </ul>
-<p><em>你可以在這裡找到官方文件: <a href="https://wiki.xxiivv.com/site/uxntal.html">https://wiki.xxiivv.com/site/uxntal.html</a></em></p>
+<p>You can find the official documentation here: <a href="https://wiki.xxiivv.com/site/uxntal.html">https://wiki.xxiivv.com/site/uxntal.html</a></p>
 <pre tabindex="0"><code>Stack: a b c
 
 00 BRK
-80 LIT a b c M[PC+1]  08 EQU a b?c             
-01 INC a b c+1        09 NEQ a b!c             
+80 LIT a b c M[PC+1]  08 EQU a b?c
+01 INC a b c+1        09 NEQ a b!c
 02 POP a b            0a GTH a b&gt;c
 03 NIP a c            0b LTH a b&lt;c
 04 SWP a c b          0c JMP a b {PC+=c}
 05 ROT b c a          0d JCN a {(b8)PC+=c}
 06 DUP a b c c        0e JSR a b {rs.PC PC+=c}
-07 OVR a b c b        0f STH a b {rs.c} 
+07 OVR a b c b        0f STH a b {rs.c}
 
 
 10 LDZ a b M[c8]      18 ADD a b+c
@@ -125,9 +130,8 @@
 16 DEI a b D[c8]      1e EOR a b^c
 17 DEO a {D[c8]=b}    1f SFT a b&gt;&gt;c8l&lt;&lt;c8h
 </code></pre><blockquote>
-<p>註：這張表預設有 a、b、c三個元素，在每個opcode後面是執行完指令後的結果。</p>
-</blockquote>
-<p>opcode 和 mode 的關係呈現如下：</p>
+<p>Note: This table assumes there are three elements a, b, and c. After each opcode, the result after instruction execution is shown.</p></blockquote>
+<p>The relationship between opcode and mode is as follows:</p>
 <pre tabindex="0"><code>    MSB &lt; MMMOOOOO &gt; LSB
            |    |
            v    v
@@ -144,53 +148,43 @@
               |
               v
             short
-</code></pre><p>對於 opcode 來說：</p>
+</code></pre><p>For opcodes:</p>
 <pre tabindex="0"><code>
     MSB  &lt;  o o O O O  &gt;  LSB
             |       |
             v       v
     Feature Area   Opcode-number
-</code></pre><p>這裡的 opcode number 指的是一個指令在一個指令區間中的編號， Feature Area 共有 0x00~0x11。</p>
-<!-- 為什麼會這樣歸納是因為要考量到 Control unit 在解碼指令後所在不同指令週期所需要做的 operation。
-
-基於簡單的設計想法，我們可以針對 Feature Area 用 74138 做 decode，並且讓訊號啟用或停用區域功能，在後幾章的提及會更詳細的描述這一部分的設計想法。
-
-for example:
-
-![](./p1.png)
-
-> 上圖為假設而已，假設！ -->
-<h2 id="指令週期對stack的操作">指令週期對stack的操作</h2>
-<p>但一個指令從解碼到執行並不只有辨別哪個指令要做什麼而已，而已知CPU 指令週期大致如下：</p>
+</code></pre><p>Here, &lsquo;opcode number&rsquo; refers to the index of an instruction within an instruction block. The Feature Area spans from 0x00 to 0x11.</p>
+<h2 id="instruction-cycle-and-stack-operations">Instruction Cycle and Stack Operations</h2>
+<p>However, an instruction from decoding to execution involves more than just identifying what the instruction does. The known CPU instruction cycle is roughly as follows:</p>
 <ol>
 <li>Fetch</li>
 <li>Decode</li>
 <li>Execute</li>
 </ol>
-<p>在 uxn 虛擬機中，指令週期被抽象化到每個 uxn 虛擬機的實作都可以不考慮遵守、或者沒有一個明確規範的限制。但是可以根據Uxn的特性歸納出一下結構：</p>
+<p>In the Uxn virtual machine, the instruction cycle is abstracted such that each Uxn VM implementation does not necessarily need to adhere to it, or there isn&rsquo;t a clearly defined constraint. However, based on Uxn&rsquo;s characteristics, the following structure can be inferred:</p>
 <ol>
 <li>Lookup to instruction</li>
 <li>operate stack or store value</li>
 <li>execute&hellip;</li>
 <li>push or store back to stack</li>
 </ol>
-<p>雖然在原本理論的情況下，stack必須在其中pop value，並且算完後push回去。但如果我們只考慮透過 stack pointer
-實作，在有些情況下，只需要重新把相同位置的數值設為新的結果即可。</p>
+<p>While theoretically, the stack must pop values and then push them back after computation, if we only consider implementing this via a stack pointer, in some cases, it&rsquo;s only necessary to update the value at the same location with the new result.</p>
 <h3 id="example-1-inc2k">Example 1: <code>INC2k</code></h3>
-<p>我們想要實作以下指令功能：</p>
+<p>We want to implement the following instruction functionality:</p>
 <pre tabindex="0"><code>#01 INC         ( 02 )
 #0001 INC2      ( 00 02 )
 #0001 INC2k     ( 00 01 00 02 )
-</code></pre><p>如果 stack 必須在指令週期 pop 和 push:</p>
+</code></pre><p>If the stack must pop and push within the instruction cycle:</p>
 <pre tabindex="0"><code>#0102 INC2k
 
-operation   step   original stack     register (flexable with 8-bits and 16-bits)
+operation   step   original stack     register (flexible with 8-bits and 16-bits)
 DUP         1      (01 02)            (01)
 DUP         2      (01 02)            (01 02)
 INC         3      (01 02)            (01 03)
 POP         4      (01 02 01)         (03)
 POP         5      (01 02 01 03)      ()
-</code></pre><p>其中 POP 所需的動作複雜度高。但如果不需要在指令週期 pop 和 push：</p>
+</code></pre><p>The POP operation has high complexity. However, if popping and pushing within the instruction cycle is not required:</p>
 <pre tabindex="0"><code>#0102 INC2k
 
 operation  step   original stack     counter
@@ -201,7 +195,7 @@ DUP2       2      (01 02 01 02)      (??)
 DUP        3      (01 02 01 02)      (02)
 INC        4      (01 02 01 02)      (03)
 SET        5      (01 02 01 03)      (03)
-</code></pre><p>or, 如果有overflow的情況的話：</p>
+</code></pre><p>or, if there is an overflow:</p>
 <pre tabindex="0"><code>#01ff INC2k
 
 operation  step   original stack     counter   description
@@ -209,69 +203,199 @@ operation  step   original stack     counter   description
 *LIT2      1      (01 ff)            (??)
 DUP2       2      (01 ff 01 ff)      (??)
 
-DUP        3      (01 ff 01 ff)      (ff)      
+DUP        3      (01 ff 01 ff)      (ff)
 INC        4      (01 ff 01 ff)      (00)      count as overflow, flag on
-SET        5      (01 ff 01 00)      (00)      
+SET        5      (01 ff 01 00)      (00)
 
-DUP        6      (01 ff 01 00)      (01)      
+DUP        6      (01 ff 01 00)      (01)
 INC        7      (01 ff 01 00)      (02)
 SET        8      (01 ff 02 00)      (02)
-</code></pre><p>這時你也會發現，如果有overflow的情況，只需要再調用相同的指令操作即可（即 DUP, INC, SET）。</p>
-<p>過程省略了繁雜的POP，取而代之的是利用stack pointer實作抽象stack、並且對stack數值的直接操作。這呼應到我第一篇 EP.0 所提到的「在確認完Stack pointer有機會在74系列實作後，就開始⋯⋯」的初期評估，在專案開始之際我已經計畫使用 Stack pointer加上前面提到的模式實作抽限的stack operation。</p>
-<!-- 1. 
+</code></pre><p>At this point, you&rsquo;ll also notice that if an overflow occurs, you only need to invoke the same instruction operations again (i.e., DUP, INC, SET).</p>
+<p>This process omits the complex POP operations, instead using a stack pointer to implement an abstract stack and operating directly on stack values. This echoes the initial assessment I mentioned in EP.0: &ldquo;After confirming that a stack pointer could potentially be implemented with the 74 series, I began&hellip;&rdquo; At the start of the project, I had already planned to use a stack pointer combined with the aforementioned mode to implement abstract stack operations.</p>
+<h2 id="next-post-instruction-analysis-and-instruction-cycle">Next Post: Instruction Analysis and Instruction Cycle</h2>
+<p>However, to solve the problem of implementing the instruction set within the Control Unit (CU), the design of the control hub must be considered. In the next article, I will attempt to find methods that can assist me in designing the implementation of the Uxn instruction set. At the same time, I will continue to discuss the initial stack pointer verification and implementation methods that were not mentioned earlier.</p>
+<p>Furthermore, due to space constraints, it&rsquo;s a bit regrettable that this post&rsquo;s conclusion ended so hastily. I will address the key concepts missing from this post at the beginning of the next one, and I apologize again.</p>
+<p>Lastly, I genuinely hoped the CSSC series could present complete thoughts like notes, but I found that in many cases, writing everything out became quite redundant. So, in the end, I heavily edited most of this post&rsquo;s content and rewrote a more rigorous version, hoping it reads more smoothly.</p>
+<p><a href="/posts/cssc-04">Next Post 》〉</a></p>
+<h2 id="appendix-source-code-and-final-result">Appendix: Source Code and Final Result</h2>
+<p>The source code is now publicly available below. Since it&rsquo;s just a simple tool, it&rsquo;s only a few lines:</p>
+<p>processing:</p>
+<pre tabindex="0"><code>import processing.serial.*;
 
-這裡先用一個最簡單的指令： INC 作為範例。INC做的事情我們可以從reference裡看到：
+final int SIZE = 11;
 
-```
-* 01 INC a b c+1      
-```
+Serial device;
+byte[] input;
+int hi = 100000000;
+PGraphics view;
+float scaling = 1;
+int viewPosX = 0, viewPosY = 0;
 
-並且以上假設的CPU架構去思考的話，大概可能是這樣：
+void setup() {
+  size(800, 600);
+  pixelDensity(2);
 
-1. program counter ++
-2. decode instruction, get flags and opcode
-3. according to opcode, 01 means INC
-4. pop "c" to plus one and set to tmp
-5. push tmp back to stack
+  view = createGraphics(800, 600);
 
-也就是說，只要在reference上看到只有 c變動的，我們暫且歸類為 take/set 1，因為它只需要用到一個tmp register去存儲一個數值。但是，這還沒考慮到有 short flag on 的情況。 -->
-<!-- ## Flags -->
-<!-- ```
-#01 INC         ( 02 )
-#0001 INC2      ( 00 02 )
-#0001 INC2k     ( 00 01 00 02 )
-```
-根據 [官方 reference](https://wiki.xxiivv.com/site/uxntal_opcodes.html)，我們可以得知如果 short 啟用了， take/set 1 的範圍就會從 1 word（8 bits）變成 2 words、同時 pop 兩個並且 +1 後 同時 push。換句話說，如果有另一個stack接收 pop 後的數值就可以保留原本順序。
+  print(Serial.list()[1]);
 
-```
-INC2k
+  device = new Serial(this, Serial.list()[1], 115200);
+  delay(10);
+  device.write(&#39;b&#39;);
 
-step   original stack        queue
+  // avoid nullPointException
+  view.beginDraw();
+  view.endDraw();
+}
 
-1      (00 [01] 02)          (01)
-2      (00 01 [02])          (01 02)
-3      (00 01 02)            (01 03)
-4      (00 01 02 01)         (03)
-5      (00 01 02 01 03)      ()
+void draw() {
+  background(255);
 
-or in another way
 
-step   original stack        register (flexable with 8-bits and 16-bits)
+  if (hi &gt; width) {
+    hi = SIZE;
+    device.write(&#39;s&#39;);
+    view.clear();
+    view.background(255);
+  }
 
-1      (00 [01] 02)          (01)
-2      (00 01 [02])          (01 02)
-3      (00 01 02)            (01 03)
-4      (00 01 02 01)         (03)
-5      (00 01 02 01 03)      ()
+  while (device.available() &gt; 0) {
+    view.beginDraw();
+    String input = device.readStringUntil(&#39;\n&#39;);
 
-``` -->
-<h2 id="下一篇指令分析與指令週期">下一篇：指令分析與指令週期</h2>
-<p>但如果要解決指令集在CU中實作的問題，就要考量到控制中樞的設計。下一個文章我將會嘗試尋找有什麼樣的方法可以協助我設計uxn指令集的實作。同時後續會繼續提到未提及的 初期 Stack pointer 的驗證和實作方式。</p>
-<p>再者，因為篇幅上的關係，這一篇的結論草草就這樣結束了真的有點可惜。我會在下一篇的開頭提及這一篇缺乏的重點概念，也再次表達歉意。</p>
-<p>最後，其實蠻希望CSSC系列能像筆記一樣把完整想法呈現出來，但是發現有很多情況寫出來後是很冗贅的。所以在最後我把這一篇的大部分內容都刪減掉並且重新撰寫更嚴謹的版本，希望閱讀起來能夠更加的流暢。</p>
-<p><a href="/posts/cssc-04">下一篇 》〉</a></p>
-<!-- 既然架構如此的龐大，我又該如何設計？從何開始？這就是下一章節的內容了⋯⋯ -->
-<!-- 因為滾動更新，再加上期末的期限，所以我預先設計了一個工具可以解決一些問題、以及後續的實作Control Unit的問題。 -->
+    if (input == null) continue;
+    if (input.length() != 56) continue;
+
+    for (int i = 2; i &lt; 54; i++) {
+      if (input.charAt(i) != &#39;0&#39; &amp;&amp; input.charAt(i) != &#39;1&#39;) continue;
+
+      view.fill(0, input.charAt(i) == &#39;1&#39;? 255: 100, 100);
+      view.rect(hi, SIZE*i, SIZE, SIZE);
+    }
+
+    //view.line(hi, 0, hi, height);
+
+    hi+=SIZE;
+
+    device.clear();
+
+    view.fill(0);
+    view.textSize(SIZE);
+
+    for (int i = 2; i &lt; 54; i++)
+      view.text(String.valueOf(i), 0, (i+1)*SIZE);
+
+    view.endDraw();
+  }
+
+  image(view, 0 + viewPosX, 0 + viewPosY, 800 * scaling, 600 * scaling);
+}
+
+String numBuf = &#34;0&#34;;
+
+int toNonZero(int num){
+  return num == 0? 1: num;
+}
+
+void keyPressed() {
+  switch(key) {
+  case &#39;+&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      scaling += 0.1;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;-&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      scaling -= 0.1;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;h&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosX += 10;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;l&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosX -= 10;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;j&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosY -= 10;
+    numBuf = &#34;0&#34;;
+    break;
+  case &#39;k&#39;:
+    for (int i = 0; i &lt; toNonZero(int(numBuf)); i++)
+      viewPosY += 10;
+    numBuf = &#34;0&#34;;
+    break;
+  default:
+    if (key &lt;= &#39;9&#39; &amp;&amp; key &gt;= &#39;0&#39;) {
+      numBuf += key;
+    }
+    break;
+  }
+}
+</code></pre><p>Arduino:</p>
+<pre tabindex="0"><code>char input[54];
+char readBuf[54];
+
+void setMode(char* modes) {
+  for (int i = 2; i &lt; 54; i++)
+    pinMode(i, modes[i] == &#39;1&#39; ? OUTPUT : INPUT);
+}
+
+void writePin(char* data) {
+  for (int i = 2; i &lt; 54; i++)
+    digitalWrite(i, data[i] == &#39;1&#39; ? HIGH : LOW);
+}
+
+void readPin() {
+  readBuf[0] = 1;
+  readBuf[1] = 1;
+  for (int i = 2; i &lt; 54; i++)
+    readBuf[i] = digitalRead(i) == HIGH ? &#39;1&#39; : &#39;0&#39;;
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  Serial.println(&#34;start&#34;);
+
+  for (int i = 2; i &lt; 54; i++) {
+    pinMode(i, INPUT_PULLUP);
+  }
+
+  attachInterrupt(digitalPinToInterrupt(2), updateInfo, CHANGE);
+}
+
+void updateInfo() {
+  readPin();
+  readBuf[54] = 0;
+  Serial.println(readBuf);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+}
+</code></pre><blockquote>
+<p><em>The code might not be perfectly complete, but its structure is very simple. Feel free to take a look at what&rsquo;s inside; I won&rsquo;t elaborate further here.</em></p></blockquote>
+<p><em>The image below shows the final result from Processing</em>
+
+<figure>
+  <img src="./p1.jpg" alt="" />
+</figure>
+
+
+</p>
+<p><em>The image below shows the Arduino Mega used for this project</em>
+
+<figure>
+  <img src="./p2.jpg" alt="" />
+</figure>
+
+
+</p>
 
 				<aside>
   <div>
@@ -281,15 +405,15 @@ step   original stack        register (flexable with 8-bits and 16-bits)
     <div>
       <ul>
         
-        <li><a href="/posts/docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        <li><a href="/posts/2025-06-05-docker-on-img/">Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</a></li>
         
-        <li><a href="/posts/update-2023-04-2/">你有找到使用工具時開心的人嗎？</a></li>
+        <li><a href="/posts/2025-03-15-travel-to-kenting/">Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</a></li>
         
-        <li><a href="/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        <li><a href="/posts/ic-forest-01/">Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</a></li>
         
-        <li><a href="/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        <li><a href="/posts/cssc-03/">CSSC - EP.3: Instruction Set Analysis</a></li>
         
-        <li><a href="/posts/cssc-03/">CSSC - EP.3 指令集解析</a></li>
+        <li><a href="/posts/cssc-02/">CSSC - EP.2: Homebrew a Simple Signal Analyzer</a></li>
         
       </ul>
     </div>
@@ -321,7 +445,8 @@ step   original stack        register (flexable with 8-bits and 16-bits)
   gsap.registerPlugin(CustomEase);
   gsap.registerPlugin(ScrollTrigger);
 
-  const selector = ".post, .metadata, .content, .summary";
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
   gsap.set(selector, { opacity: 1 });
 
   const beforeOpacity = 0;

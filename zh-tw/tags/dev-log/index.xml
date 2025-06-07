@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dev-Log on ljcucc blog</title>
+    <link>/zh-tw/tags/dev-log/</link>
+    <description>Recent content in Dev-Log on ljcucc blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Thu, 05 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/zh-tw/tags/dev-log/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在有限空間的電腦上跑大檔案的 docker 儲存</title>
+      <link>/zh-tw/posts/2025-06-05-docker-on-img/</link>
+      <pubDate>Thu, 05 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/2025-06-05-docker-on-img/</guid>
+      <description>&lt;p&gt;大家好！最近我手邊一台閒置已久的 Chromebook，心想著別讓它白白吃灰，就動了念頭想把它變成我的 Docker 開發簡單的伺服器。畢竟，用一台輕量級的機器來跑一些輕量的服務，很多事情都會方便很多。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Wiki rebrand - Update 2023-03</title>
+      <link>/zh-tw/posts/update-2023-03/</link>
+      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/update-2023-03/</guid>
+      <description>&lt;p&gt;這個月我致力於更新 我的個人知識庫，讓我統整的知識有一個可以展現的平台。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

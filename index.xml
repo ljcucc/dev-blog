@@ -4,65 +4,58 @@
     <title>ljcucc blog</title>
     <link>/</link>
     <description>Recent content on ljcucc blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <generator>Hugo</generator>
+    <language>en-US</language>
     <lastBuildDate>Thu, 05 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>在有限空間的電腦上跑大檔案的 docker 儲存</title>
-      <link>/posts/docker-on-img/</link>
+      <title>Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</title>
+      <link>/posts/2025-06-05-docker-on-img/</link>
       <pubDate>Thu, 05 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>/posts/docker-on-img/</guid>
-      <description>&lt;p&gt;大家好！最近我手邊一台閒置已久的 Chromebook，心想著別讓它白白吃灰，就動了念頭想把它變成我的 Docker 開發簡單的伺服器。畢竟，用一台輕量級的機器來跑一些輕量的服務，很多事情都會方便很多。&lt;/p&gt;</description>
+      <guid>/posts/2025-06-05-docker-on-img/</guid>
+      <description>&lt;p&gt;Hello everyone! Recently, I had an old, unused Chromebook lying around. Thinking it&amp;rsquo;s a shame to let it gather dust, I got the idea to turn it into a simple Docker development server. After all, using a lightweight machine for lightweight services makes many things much more convenient.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>你有找到使用工具時開心的人嗎？</title>
-      <link>/posts/update-2023-04-2/</link>
-      <pubDate>Fri, 14 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>/posts/update-2023-04-2/</guid>
-      <description>&lt;p&gt;「啊！啊！啊！啊！」 充斥在 「啊！設計」的主題曲中，象徵著設計師所設計的細節都像一種表達和表現，是設計師有意設計下的產物。每當我們仔細觀察，看見這些細節時，難免都會在心裡甚至表情上頭露出新奇的喜悅 —— 「啊！ 原來如此！」。&lt;/p&gt;</description>
+      <title>Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</title>
+      <link>/posts/2025-03-15-travel-to-kenting/</link>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>/posts/2025-03-15-travel-to-kenting/</guid>
+      <description>&lt;p&gt;To save money on commuting between Kaohsiung and Tainan recently, I purchased the Southern Taiwan (Nangaoping) TPASS.  This guide provides some strategies for exploring Kenting affordably. If you&amp;rsquo;re a foreigner visiting Taiwan and plan to stay in Southern Taiwan for close to a month, purchasing the TPASS is also highly recommended.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Wiki rebrand - Update 2023-03</title>
-      <link>/posts/update-2023-03/</link>
-      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>/posts/update-2023-03/</guid>
-      <description>&lt;p&gt;這個月我致力於更新 我的個人知識庫，讓我統整的知識有一個可以展現的平台。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Ichigojam - 集成晶體森林 裡的 活化石 (1)</title>
+      <title>Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</title>
       <link>/posts/ic-forest-01/</link>
       <pubDate>Wed, 01 Mar 2023 08:00:00 +0800</pubDate>
       <guid>/posts/ic-forest-01/</guid>
-      <description>&lt;p&gt;這次我前往日本，尋找 集成晶體森林 裡的 活化石。&lt;/p&gt;</description>
+      <description>&lt;p&gt;On this trip, I traveled to Japan to seek out a living fossil in the integrated circuit forest.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>CSSC - EP.3 指令集解析</title>
+      <title>CSSC - EP.3: Instruction Set Analysis</title>
       <link>/posts/cssc-03/</link>
       <pubDate>Mon, 23 Jan 2023 23:59:59 +0800</pubDate>
       <guid>/posts/cssc-03/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;前幾天打疫苗不舒服，停更了一段時間。而且期末終於結束了，雖然後面會有很多混雜期末時所做的一些決定，但還是有更多時間去思考更多細節了 (´▽｀)&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;專案進行中，我越意識到原來設計一個計算機架構並不是這麼簡單的一件事情⋯⋯我一開始是直接用腦袋想和模擬，但越到後面發現，uxn 基本指令集就有 32 個，加上3個mode組合後共有 256 個指令集，要為 256 個指令設計一個 CPU 對於一個剛入學的大學生真的是一個有挑戰性的事情⋯⋯&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;A few days ago, I felt unwell after getting a vaccine, so I paused updates for a while. And finally, the semester is over! Although there will be many decisions influenced by what I made during the finals period, I now have more time to think about more details (´▽｀)&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;As the project progressed, I realized more and more that designing a computer architecture is not such a simple task&amp;hellip; Initially, I just brainstormed and simulated in my head, but later on, I found that Uxn&amp;rsquo;s basic instruction set alone has 32 instructions, and with 3 mode combinations, there are a total of 256 instructions. Designing a CPU for 256 instructions is truly a challenging endeavor for a university freshman&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>CSSC - EP.2: Homebrew a simple singal analyzer</title>
+      <title>CSSC - EP.2: Homebrew a Simple Signal Analyzer</title>
       <link>/posts/cssc-02/</link>
       <pubDate>Thu, 19 Jan 2023 23:59:59 +0800</pubDate>
       <guid>/posts/cssc-02/</guid>
-      <description>&lt;p&gt;在上一篇文章中，我提到了我已經完成了 Register A、B、ALU 的設計和實作。然而，在實際實作過程中，我發現在操作和調試訊號時如果只使用 LED 作為肉眼觀察工具，很難直接觀察到訊號的具體變化。因此，我決定來實現一個邏輯分析工具。&lt;/p&gt;</description>
+      <description>&lt;p&gt;In the previous article, I mentioned that I had completed the design and implementation of Register A, B, and the ALU. However, during the actual implementation process, I found that when operating and debugging signals, relying solely on LEDs for visual inspection made it difficult to directly observe specific signal changes. Therefore, I decided to implement a logic analysis tool.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>CSSC - EP.1 : The starting point</title>
+      <title>CSSC - EP.1 : The Starting Point</title>
       <link>/posts/cssc-01/</link>
       <pubDate>Wed, 18 Jan 2023 23:59:59 +0000</pubDate>
       <guid>/posts/cssc-01/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;因為blog比較晚才架設的關係，所以累積了比較多的東西，會在後面幾個post一起補上。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;這次要介紹的元件的設計早在專案開始前的幾年前就已經在breadboard上實作過，這次因為剛好遇到學校的期末專題，就想要以重現之前的專案、實踐新的計畫為題，製作一個全新的CPU計畫。&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Since the blog was set up relatively late, a lot of content has accumulated, which I&amp;rsquo;ll be catching up on in the next few posts.&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;The designs for the components I&amp;rsquo;m about to introduce were actually implemented on breadboards several years &lt;em&gt;before&lt;/em&gt; this project even began. This time, with the school&amp;rsquo;s final project deadline approaching, I decided to revisit my previous work and incorporate new ideas, embarking on a brand-new CPU project.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>CSSC - EP.0 預告：來設計台計算機呢？ - Stack CPU </title>
+      <title>CSSC - EP.0 Teaser: How About Designing a Computer? - Stack CPU</title>
       <link>/posts/cssc-00/</link>
       <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
       <guid>/posts/cssc-00/</guid>
-      <description>&lt;p&gt;因為學期末我們每個人都被老師要求在 數位電路設計 的課程中繳交一個至少以 74 系列所組裝出的作品，所以我突然有個大膽的想法，合不來設計台計算機呢？&lt;/p&gt;</description>
+      <description>&lt;p&gt;As the semester drew to a close, each of us was required by our teacher to submit a project for the Digital Circuit Design course, assembled using at least the 74 series ICs. That&amp;rsquo;s when a bold idea suddenly struck me: why not design a computer?&lt;/p&gt;</description>
     </item>
     <item>
       <title>New blog.ljc.cc - Brand new design and more !</title>

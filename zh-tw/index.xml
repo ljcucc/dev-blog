@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ljcucc blog</title>
+    <link>/zh-tw/</link>
+    <description>Recent content on ljcucc blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Thu, 05 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/zh-tw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在有限空間的電腦上跑大檔案的 docker 儲存</title>
+      <link>/zh-tw/posts/2025-06-05-docker-on-img/</link>
+      <pubDate>Thu, 05 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/2025-06-05-docker-on-img/</guid>
+      <description>&lt;p&gt;大家好！最近我手邊一台閒置已久的 Chromebook，心想著別讓它白白吃灰，就動了念頭想把它變成我的 Docker 開發簡單的伺服器。畢竟，用一台輕量級的機器來跑一些輕量的服務，很多事情都會方便很多。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</title>
+      <link>/zh-tw/posts/2025-03-15-travel-to-kenting/</link>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/2025-03-15-travel-to-kenting/</guid>
+      <description>&lt;p&gt;最近為了省錢在高雄與台南之間通勤，所以我購買了 TPASS 的南高屏方案。這裡提供了一些方案，教你如何花最少的錢暢遊墾丁。如果你是外國人來台灣玩，且會待在南台灣快要一個月也很推薦可以購買。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Wiki rebrand - Update 2023-03</title>
+      <link>/zh-tw/posts/update-2023-03/</link>
+      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/update-2023-03/</guid>
+      <description>&lt;p&gt;這個月我致力於更新 我的個人知識庫，讓我統整的知識有一個可以展現的平台。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ichigojam - 集成晶體森林 裡的 活化石 (1)</title>
+      <link>/zh-tw/posts/ic-forest-01/</link>
+      <pubDate>Wed, 01 Mar 2023 08:00:00 +0800</pubDate>
+      <guid>/zh-tw/posts/ic-forest-01/</guid>
+      <description>&lt;p&gt;這次我前往日本，尋找 集成晶體森林 裡的 活化石。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CSSC - EP.3 指令集解析</title>
+      <link>/zh-tw/posts/cssc-03/</link>
+      <pubDate>Mon, 23 Jan 2023 23:59:59 +0800</pubDate>
+      <guid>/zh-tw/posts/cssc-03/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;前幾天打疫苗不舒服，停更了一段時間。而且期末終於結束了，雖然後面會有很多混雜期末時所做的一些決定，但還是有更多時間去思考更多細節了 (´▽｀)&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;專案進行中，我越意識到原來設計一個計算機架構並不是這麼簡單的一件事情⋯⋯我一開始是直接用腦袋想和模擬，但越到後面發現，uxn 基本指令集就有 32 個，加上3個mode組合後共有 256 個指令集，要為 256 個指令設計一個 CPU 對於一個剛入學的大學生真的是一個有挑戰性的事情⋯⋯&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CSSC - EP.2: Homebrew a simple singal analyzer</title>
+      <link>/zh-tw/posts/cssc-02/</link>
+      <pubDate>Thu, 19 Jan 2023 23:59:59 +0800</pubDate>
+      <guid>/zh-tw/posts/cssc-02/</guid>
+      <description>&lt;p&gt;在上一篇文章中，我提到了我已經完成了 Register A、B、ALU 的設計和實作。然而，在實際實作過程中，我發現在操作和調試訊號時如果只使用 LED 作為肉眼觀察工具，很難直接觀察到訊號的具體變化。因此，我決定來實現一個邏輯分析工具。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CSSC - EP.1 : The starting point</title>
+      <link>/zh-tw/posts/cssc-01/</link>
+      <pubDate>Wed, 18 Jan 2023 23:59:59 +0000</pubDate>
+      <guid>/zh-tw/posts/cssc-01/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;因為blog比較晚才架設的關係，所以累積了比較多的東西，會在後面幾個post一起補上。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;這次要介紹的元件的設計早在專案開始前的幾年前就已經在breadboard上實作過，這次因為剛好遇到學校的期末專題，就想要以重現之前的專案、實踐新的計畫為題，製作一個全新的CPU計畫。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CSSC - EP.0 預告：來設計台計算機呢？ - Stack CPU </title>
+      <link>/zh-tw/posts/cssc-00/</link>
+      <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/cssc-00/</guid>
+      <description>&lt;p&gt;因為學期末我們每個人都被老師要求在 數位電路設計 的課程中繳交一個至少以 74 系列所組裝出的作品，所以我突然有個大膽的想法，合不來設計台計算機呢？&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

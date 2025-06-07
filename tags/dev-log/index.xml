@@ -4,30 +4,16 @@
     <title>Dev-Log on ljcucc blog</title>
     <link>/tags/dev-log/</link>
     <description>Recent content in Dev-Log on ljcucc blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <generator>Hugo</generator>
+    <language>en-US</language>
     <lastBuildDate>Thu, 05 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/dev-log/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>在有限空間的電腦上跑大檔案的 docker 儲存</title>
-      <link>/posts/docker-on-img/</link>
+      <title>Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</title>
+      <link>/posts/2025-06-05-docker-on-img/</link>
       <pubDate>Thu, 05 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>/posts/docker-on-img/</guid>
-      <description>&lt;p&gt;大家好！最近我手邊一台閒置已久的 Chromebook，心想著別讓它白白吃灰，就動了念頭想把它變成我的 Docker 開發簡單的伺服器。畢竟，用一台輕量級的機器來跑一些輕量的服務，很多事情都會方便很多。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>你有找到使用工具時開心的人嗎？</title>
-      <link>/posts/update-2023-04-2/</link>
-      <pubDate>Fri, 14 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>/posts/update-2023-04-2/</guid>
-      <description>&lt;p&gt;「啊！啊！啊！啊！」 充斥在 「啊！設計」的主題曲中，象徵著設計師所設計的細節都像一種表達和表現，是設計師有意設計下的產物。每當我們仔細觀察，看見這些細節時，難免都會在心裡甚至表情上頭露出新奇的喜悅 —— 「啊！ 原來如此！」。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Wiki rebrand - Update 2023-03</title>
-      <link>/posts/update-2023-03/</link>
-      <pubDate>Tue, 21 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>/posts/update-2023-03/</guid>
-      <description>&lt;p&gt;這個月我致力於更新 我的個人知識庫，讓我統整的知識有一個可以展現的平台。&lt;/p&gt;</description>
+      <guid>/posts/2025-06-05-docker-on-img/</guid>
+      <description>&lt;p&gt;Hello everyone! Recently, I had an old, unused Chromebook lying around. Thinking it&amp;rsquo;s a shame to let it gather dust, I got the idea to turn it into a simple Docker development server. After all, using a lightweight machine for lightweight services makes many things much more convenient.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

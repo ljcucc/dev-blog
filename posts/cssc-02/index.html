@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,12 +10,13 @@
 		}
 
 	</style>
-	<title>CSSC - EP.2: Homebrew a simple singal analyzer</title>
+	<title>CSSC - EP.2: Homebrew a Simple Signal Analyzer</title>
 	<meta name="description" content="Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
 	
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
+
   
 
 
@@ -25,35 +26,33 @@
 </head>
 <body>
 	<header>
-	
+  
 
-	<div class="title">
-		<a href="/" class="no-underline">ljcucc blog</a>
-	</div>
+  <div class="title">
+    <a href="/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
 
-	<div class="wrapper">
-		<div class="marquee">
-			
-			<p>
-				Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org
-			</p>
-			<p>
-				Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org
-			</p>
-		</div>
-	</div>
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
 
-	<div class="title menu">
-		<a href="/tags" class="no-underline">menu</a>
-	</div>
+  <div class="title menu">
+    <a href="/tags" class="no-underline">menu</a>
+  </div>
 
-	
+  
 </header>
 
 	
 	<main>
 		<article>
-			<h1 class="post">CSSC - EP.2: Homebrew a simple singal analyzer</h1>
+			<h1 class="post">CSSC - EP.2: Homebrew a Simple Signal Analyzer</h1>
 			<div class="metadata">
 			<b><time>2023-01-19 23:59:59</time></b>
 		       
@@ -61,31 +60,42 @@
         	       
 			</div>
 
+			
+<p>
+   Available in 
+  <a href="/zh-tw/posts/cssc-02/" hreflang="zh-TW">
+    繁體中文
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
 			<div class="content">
-				<p>在上一篇文章中，我提到了我已經完成了 Register A、B、ALU 的設計和實作。然而，在實際實作過程中，我發現在操作和調試訊號時如果只使用 LED 作為肉眼觀察工具，很難直接觀察到訊號的具體變化。因此，我決定來實現一個邏輯分析工具。</p>
-<p>邏輯分析儀是一種用於分析電子產品的工具，它可以檢測和記錄電子產品的訊號，並將其轉換為數字或圖形以便觀察和分析。邏輯分析儀的使用可以提高電子產品的設計和開發效率，並使得調試過程更加有效率。但身為學生的我雖然也想用邏輯分析，但是如果要完全把 計算機 的每個腳位都插上 debug 除了增加了邏輯分析儀的成本，對於邏輯分析儀器的購買我也無從下手。</p>
-<p>所以在一個禮拜期限的迫使下，我使用了 Arduino 和 Processing 來實現一個簡單的邏輯分析工具。 Processing 是一種開源的程式語言和環境，它可以用於創建互動式圖形和動畫。</p>
-<h2 id="為什麼選擇processing">*為什麼選擇Processing？</h2>
-<p>在進行邏輯分析工具的設計過程中，我選擇了使用 Processing 作為快速sketching開發的原因是除了因為它支援Serial的Library，Processing常在 Creative Coding裡扮演快速雛形的角色。他簡潔的語法與API的設計，讓快速構建雛形變得更容易，這對只有一個禮拜要把東西趕出來的我更是加分。</p>
-<h2 id="為什麼要用arduino不去買邏輯分析儀">*為什麼要用Arduino不去買邏輯分析儀？</h2>
-<p>除了時間上的因素外，我也想要在這個專案上很多東西如果可以，可以自己動手做做看。除此之外在這段期間我也發現其實可以通過I/O Expander來進行I/O的擴容，這讓我使用Arduino自製的動力大增。</p>
-<h2 id="空接問題-和-pullup-resistor">空接問題 和 Pullup resistor</h2>
-<p>一開始寫好後發現大多數的腳位都呈現不規律地狀態，就算沒有接上任何腳位（空接），可能是因為大多數的IC都是TTL的IC，從晶片的型號上就可以看出：74[LS]？？ <em>或者可以從V_min 或 V_max看出預設空接的狀態是什麼⋯⋯</em></p>
+				<p>In the previous article, I mentioned that I had completed the design and implementation of Register A, B, and the ALU. However, during the actual implementation process, I found that when operating and debugging signals, relying solely on LEDs for visual inspection made it difficult to directly observe specific signal changes. Therefore, I decided to implement a logic analysis tool.</p>
+<p>A logic analyzer is a tool used for analyzing electronic products. It can detect and record signals from electronic products, converting them into digital or graphical forms for observation and analysis. Using a logic analyzer can improve the efficiency of electronic product design and development, and make the debugging process more efficient. However, as a student, while I wanted to use a logic analyzer, connecting every single pin of the computer for debugging would not only increase the cost of the logic analyzer itself, but I also had no idea where to even begin buying one.</p>
+<p>Thus, pressed by a one-week deadline, I used Arduino and Processing to implement a simple logic analysis tool. Processing is an open-source programming language and environment that can be used to create interactive graphics and animations.</p>
+<h2 id="why-processing">*Why Processing?</h2>
+<p>During the design process of the logic analysis tool, I chose Processing for rapid prototyping/sketching because, in addition to its Serial Library support, Processing often plays the role of a rapid prototyping tool in Creative Coding. Its concise syntax and API design make quick prototyping easier, which was an added bonus for me, given only one week to get things done.</p>
+<h2 id="why-use-arduino-instead-of-buying-a-logic-analyzer">*Why use Arduino instead of buying a logic analyzer?</h2>
+<p>Besides time constraints, I also wanted to try to build as many things as possible myself for this project, if feasible. Furthermore, during this period, I also discovered that I/O expansion can be achieved through I/O Expanders, which greatly boosted my motivation to build this with Arduino.</p>
+<h2 id="floating-pin-issues-and-pull-up-resistors">Floating Pin Issues and Pull-up Resistors</h2>
+<p>After initially setting it up, I noticed that most pins were in an erratic state, even when not connected to anything (floating). This was likely because most of the ICs are TTL-based, as indicated by their part numbers: 74[LS]??. <em>Or, one could infer the default floating state from V_min or V_max&hellip;</em></p>
 <blockquote>
-<p>補充：在TTL電路中空接會導致電路運行不穩定，因為電流不能得到有效控制。為了避免TTL電路的空接，通常會使用pull-up resistor。這是一種電阻，它連接在輸入端的高電位與地面之間。這樣可以確保電路有一個高電位的參考點，避免電路運行不穩定。在 Arduino 中，可以使用內置的 digitalRead() 函式來讀取輸入端的電位，但是若輸入端未被接通時，電路將會運行不穩定。因此，在使用輸入端時，可以使用 Arduino 內置的 INPUT_PULLUP 電路來設定 pull-up resistor。</p>
-</blockquote>
+<p>Note: In TTL circuits, floating inputs can lead to unstable circuit operation because current cannot be effectively controlled. To prevent floating inputs in TTL circuits, a pull-up resistor is typically used. This is a resistor connected between the input terminal&rsquo;s high potential and ground. This ensures the circuit has a high potential reference point, preventing unstable operation. In Arduino, the built-in <code>digitalRead()</code> function can be used to read the input pin&rsquo;s voltage level, but if the input is not connected, the circuit will behave unstably. Therefore, when using input pins, the Arduino&rsquo;s built-in <code>INPUT_PULLUP</code> circuit can be used to set up a pull-up resistor.</p></blockquote>
 <h2 id="attachinterrupt">attachInterrupt</h2>
-<p>接下來我發現了頻率的問題，因為每次傳輸的資料有限，所以如果不斷平凡的傳輸每隔輸入的狀態可能會導致緩存塞車或者是漏接等等情況。 基於這個原因，我的解決方法是使用 Arduino 的 attachInterrupt。</p>
+<p>Next, I encountered a frequency issue. Since the amount of data transmitted each time is limited, continuously and frequently transmitting the state of every input could lead to buffer overflow or missed readings. Based on this, my solution was to use Arduino&rsquo;s <code>attachInterrupt</code> function.</p>
 <blockquote>
-<p>補充：在 Arduino 中，attachInterrupt 是一種函式，它可以設置中斷服務程序，讓您的程式可以在特定事件發生時執行。通常，Arduino 的主程式會不斷執行，而中斷服務程序則是在特定事件發生時執行。例如，當一個按鈕被按下時，中斷服務程序就會被執行。這樣的設計方式可以讓程式在不會影響主程式執行的情況下，響應某些特定事件。通過使用 attachInterrupt 函式，您可以將中斷服務程序與特定的 IO 引腳相關聯。例如，您可以將中斷服務程序與按鈕引腳相關聯，以便在按鈕被按下時執行中斷服務程序。</p>
-</blockquote>
-<p>但在這裡我就採用 D2 作為 attachInterrupt 的 pin， 一旦這個輸入有任何的變化，那就會觸發中斷。 在Arduino 上能支援這種中斷模式的腳位並不多，pin 2 是其中一個（對於我使用的 Arduino Mega 來說）。</p>
-<h2 id="結論">結論</h2>
-<p>因為時間有限，我能做的研究和完成的完整度也是有限的。但是在期末災難結束後，我應該就有更多的時間可以自由發揮了⋯⋯ 期待下一集建構 CPU 時發現的更多事～</p>
+<p>Note: In Arduino, <code>attachInterrupt</code> is a function that allows you to set up an Interrupt Service Routine (ISR), enabling your program to execute specific code when a particular event occurs. Typically, the main Arduino program runs continuously, while the ISR executes only when a specific event happens. For instance, when a button is pressed, the ISR would be executed. This design allows the program to respond to certain events without affecting the main program&rsquo;s execution. By using the <code>attachInterrupt</code> function, you can associate an ISR with specific I/O pins. For example, you can associate an ISR with a button pin so that the ISR executes when the button is pressed.</p></blockquote>
+<p>However, here I used D2 as the <code>attachInterrupt</code> pin; any change in this input will trigger an interrupt. Not many pins on Arduino support this interrupt mode, but pin 2 is one of them (for the Arduino Mega I&rsquo;m using).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Due to time constraints, the depth of research I could do and the completeness of what I could achieve were limited. However, after the semester-end &ldquo;disaster&rdquo; is over, I should have more time to freely develop things&hellip; Looking forward to discovering more things while building the CPU in the next episode~</p>
 <p>(´▽｀)</p>
-<p><a href="/posts/cssc-03/">下一篇</a></p>
-<h2 id="附錄原始碼和最終結果">附錄：原始碼和最終結果</h2>
-<p>以下就直接公開了原始碼，因為只是個簡單的工具，所以沒幾行：</p>
+<p><a href="/posts/cssc-03/">Next Post</a></p>
+<h2 id="appendix-source-code-and-final-result">Appendix: Source Code and Final Result</h2>
+<p>The source code is published directly below; since it&rsquo;s just a simple tool, it&rsquo;s only a few lines:</p>
 <p>processing:</p>
 <pre tabindex="0"><code>import processing.serial.*;
 
@@ -103,13 +113,13 @@ void setup() {
   pixelDensity(2);
 
   view = createGraphics(800, 600);
-  
+
   print(Serial.list()[1]);
-  
+
   device = new Serial(this, Serial.list()[1], 115200);
   delay(10);
   device.write(&#39;b&#39;);
-  
+
   // avoid nullPointException
   view.beginDraw();
   view.endDraw();
@@ -117,8 +127,8 @@ void setup() {
 
 void draw() {
   background(255);
-  
-  
+
+
   if (hi &gt; width) {
     hi = SIZE;
     device.write(&#39;s&#39;);
@@ -151,10 +161,10 @@ void draw() {
 
     for (int i = 2; i &lt; 54; i++)
       view.text(String.valueOf(i), 0, (i+1)*SIZE);
-      
+
     view.endDraw();
   }
-  
+
   image(view, 0 + viewPosX, 0 + viewPosY, 800 * scaling, 600 * scaling);
 }
 
@@ -246,9 +256,8 @@ void loop() {
   // put your main code here, to run repeatedly:
 }
 </code></pre><blockquote>
-<p><em>程式可能沒有寫的很完整，但結構很簡單，可以先看看裡面寫了些什麼，這裡就不多語了</em></p>
-</blockquote>
-<p><em>下圖為最終Processing的結果</em>
+<p><em>The code might not be perfectly complete, but its structure is very simple. Feel free to take a look at what&rsquo;s inside; I won&rsquo;t elaborate further here.</em></p></blockquote>
+<p><em>The image below shows the final result from Processing</em>
 
 <figure>
   <img src="./p1.jpg" alt="" />
@@ -256,7 +265,7 @@ void loop() {
 
 
 </p>
-<p><em>下圖為此專案使用的Arduino Mega</em>
+<p><em>The image below shows the Arduino Mega used for this project</em>
 
 <figure>
   <img src="./p2.jpg" alt="" />
@@ -273,15 +282,15 @@ void loop() {
     <div>
       <ul>
         
-        <li><a href="/posts/docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        <li><a href="/posts/2025-06-05-docker-on-img/">Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</a></li>
         
-        <li><a href="/posts/update-2023-04-2/">你有找到使用工具時開心的人嗎？</a></li>
+        <li><a href="/posts/2025-03-15-travel-to-kenting/">Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</a></li>
         
-        <li><a href="/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        <li><a href="/posts/ic-forest-01/">Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</a></li>
         
-        <li><a href="/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        <li><a href="/posts/cssc-03/">CSSC - EP.3: Instruction Set Analysis</a></li>
         
-        <li><a href="/posts/cssc-03/">CSSC - EP.3 指令集解析</a></li>
+        <li><a href="/posts/cssc-02/">CSSC - EP.2: Homebrew a Simple Signal Analyzer</a></li>
         
       </ul>
     </div>
@@ -313,7 +322,8 @@ void loop() {
   gsap.registerPlugin(CustomEase);
   gsap.registerPlugin(ScrollTrigger);
 
-  const selector = ".post, .metadata, .content, .summary";
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
   gsap.set(selector, { opacity: 1 });
 
   const beforeOpacity = 0;

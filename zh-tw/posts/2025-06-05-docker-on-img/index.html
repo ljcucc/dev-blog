@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>
+	  body{
+			font-family:monospace;
+		}
+
+	</style>
+	<title>在有限空間的電腦上跑大檔案的 docker 儲存</title>
+	<meta name="description" content="Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+
+  
+    <script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [
+        ["\\[", "\\]"],
+        ["$$", "$$"],
+      ], 
+      inlineMath: [
+        ["\\(", "\\)"],
+        ["$", "$"],
+      ], 
+    },
+    loader: {
+      load: ["ui/safe"],
+    },
+  };
+</script>
+
+  
+
+
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+</head>
+<body>
+	<header>
+  
+
+  <div class="title">
+    <a href="/zh-tw/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
+
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
+
+  <div class="title menu">
+    <a href="/zh-tw/tags" class="no-underline">menu</a>
+  </div>
+
+  
+</header>
+
+	
+	<main>
+		<article>
+			<h1 class="post">在有限空間的電腦上跑大檔案的 docker 儲存</h1>
+			<div class="metadata">
+			<b><time>2025-06-05 00:00:00</time></b>
+		       
+		           <a href="/zh-tw/tags/dev-log">dev-log</a>
+        	       
+		           <a href="/zh-tw/tags/dev-note">dev-note</a>
+        	       
+			</div>
+
+			
+<p>
+   Available in 
+  <a href="/posts/2025-06-05-docker-on-img/" hreflang="en-US">
+    English
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
+			<div class="content">
+				<p>大家好！最近我手邊一台閒置已久的 Chromebook，心想著別讓它白白吃灰，就動了念頭想把它變成我的 Docker 開發簡單的伺服器。畢竟，用一台輕量級的機器來跑一些輕量的服務，很多事情都會方便很多。</p>
+<p>但很快我就碰到了第一個，也是最直接的瓶頸：<strong>儲存空間</strong>。這台 Chromebook 內建的 eMMC 硬碟只有可憐的 32GB。對於日常使用或許還行，但你要知道，Docker 隨便 <code>build</code> 個 image、拉幾個 layer 下來，空間就迅速告急，根本不夠用！</p>
+<h1 id="問題-exfat-權限問題">問題: exFAT 權限問題</h1>
+<p>既然內建空間不夠，我的直覺反應就是把 Docker 的資料根目錄 (data root) 掛載到我平時沒怎麼在用的外接 USB 硬碟上。這樣一來，儲存空間的問題似乎迎刃而解了。</p>
+<p>然而，新的問題接踵而至。之前為了讓這顆 USB 硬碟能在我的 Mac 和 Linux 上都能順利讀寫資料，我將它格式化成了 <strong>exFAT</strong>。結果現在問題來了，雖然儲存空間有了，但用在 Docker 上就有了 <strong>權限問題</strong>！尤其是一些 image 在 <code>build</code> 過程中會執行 <code>chown</code>（變更檔案擁有者）這樣的操作，在 exFAT 格式下完全搞不定。</p>
+<p>exFAT 雖然跨平台兼容性好，但它本身並不支援 Linux 系統所需的 POSIX 權限模型，這正是 <code>chown</code> 等命令無法生效的根本原因。起初試錯了好幾次才發覺這顆硬碟被我格式化成 exFAT（ex stands for 噁心，又稱 「又肥膩又噁心」）。</p>
+<h1 id="解方-虛擬磁碟">解方: 虛擬磁碟</h1>
+<p>既然 exFAT 不支援，那我可不可以在 exFAT 硬碟上 <strong>「偽造」一個支援 POSIX 權限的檔案系統</strong> 呢？</p>
+<p>我的解決方案是：在 exFAT 硬碟上，先用 <code>fallocate</code> 或 <code>dd</code> 創造一個大大的<strong>虛擬磁碟檔案 (.img)</strong>。然後，將這個 <code>.img</code> 檔案 <code>mount</code> 到系統上，並把它 <strong>格式化成 ext4 格式</strong>。這樣一來，Docker 運行在 ext4 裡面，所有權限問題就都迎刃而解了！這就像是在一個不支援特定語言的國家裡，設立了一個說特定語言的「大使館」區域，讓所有與該語言相關的活動都能正常進行。</p>
+<p>這個方法不僅完美解決了權限問題，還能讓我靈活地規劃 Docker 的儲存空間大小，不至於被 Chromebook 內建的捉襟見肘的 eMMC 空間所限制。</p>
+<h2 id="step-1-建立虛擬磁碟檔案-img">Step 1: 建立虛擬磁碟檔案 (.img)</h2>
+<p>首先，我需要在我那顆 exFAT 格式的 USB 硬碟上，建立一個足夠大的空檔案，這個檔案將作為我們的虛擬磁碟。我將它命名為 <code>docker_disk.img</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 首先，進入你的 USB 硬碟掛載點。假設你的 USB 硬碟掛載在 /mnt/usb_drive</span>
+</span></span><span style="display:flex;"><span>cd /mnt/usb_drive
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 建立一個 20GB 的虛擬磁碟檔案。你可以根據你的需求調整大小。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 我使用了 status=progress 來顯示進度條，這樣等待時不會那麼焦慮。</span>
+</span></span><span style="display:flex;"><span>sudo dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/zero of<span style="color:#f92672">=</span>docker_disk.img bs<span style="color:#f92672">=</span>1M count<span style="color:#f92672">=</span><span style="color:#ae81ff">20000</span> status<span style="color:#f92672">=</span>progress
+</span></span></code></pre></div><ul>
+<li><code>if=/dev/zero</code>：從 <code>/dev/zero</code> 讀取資料，基本上就是用零來填充檔案。</li>
+<li><code>of=docker_disk.img</code>：輸出檔案的名稱。</li>
+<li><code>bs=1M</code>：設定區塊大小為 1 Megabyte。</li>
+<li><code>count=20000</code>：寫入 20000 個區塊，所以總大小為 20000 * 1MB = 20GB。如果你要更精確一點也可以以 2 為底計算。
+<ul>
+<li>（ $log(size) \in \mathbb{N}$）</li>
+</ul>
+</li>
+</ul>
+<h2 id="step-2-格式化虛擬磁碟檔案為-ext4">Step 2: 格式化虛擬磁碟檔案為 ext4</h2>
+<p>現在，這個 <code>docker_disk.img</code> 檔案只是個空殼。我們需要將它內部格式化為 Linux 原生的 <code>ext4</code> 檔案系統，這樣它才能支援 POSIX 權限。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkfs.ext4 docker_disk.img
+</span></span></code></pre></div><p>執行後，你會看到 <code>mkfs.ext4</code> 創建檔案系統的過程，包括 inode 數量、區塊大小等資訊。</p>
+<h2 id="step-3-掛載虛擬磁碟">Step 3: 掛載虛擬磁碟</h2>
+<p>檔案系統格式化好後，我們需要將這個虛擬磁碟檔案掛載到系統上的一個目錄，這樣它才能被當作一個正常的磁碟分區來使用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 建立一個掛載點，例如在 /mnt 或你的家目錄下</span>
+</span></span><span style="display:flex;"><span>sudo mkdir /mnt/docker_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 掛載虛擬磁碟</span>
+</span></span><span style="display:flex;"><span>sudo mount -o loop docker_disk.img /mnt/docker_data
+</span></span></code></pre></div><ul>
+<li><code>-o loop</code>：這個選項至關重要，它告訴 <code>mount</code> 命令將 <code>docker_disk.img</code> 檔案視為一個迴圈設備 (loop device)，就像它是一個物理硬碟一樣進行掛載。</li>
+</ul>
+<h2 id="step-4-整合-docker-儲存">Step 4: 整合 Docker 儲存</h2>
+<p>現在 <code>/mnt/docker_data</code> 已經是一個由 <code>ext4</code> 檔案系統支援的目錄了，它完全支援 <code>chown</code> 以及其他 POSIX 權限操作。接下來，我將其整合到 Docker 中。</p>
+<h3 id="option-a-變更-docker-的資料根目錄-data-root--適用於進階需求"><strong>Option A: 變更 Docker 的資料根目錄 (data-root) – 適用於進階需求</strong></h3>
+<p>如果你希望將 Docker 的所有資料（包括 image、container、volume 等）都儲存在這個虛擬磁碟上，你可以修改 Docker 的 <code>daemon.json</code> 設定檔。這是一個比較徹底的改變，建議在沒有現有 Docker 資料時操作，或做好備份。</p>
+<ol>
+<li>
+<p>編輯或創建 <code>/etc/docker/daemon.json</code> 檔案：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;data-root&#34;</span>: <span style="color:#e6db74">&#34;/mnt/docker_data/docker_root&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>建立 <code>data-root</code> 指定的目錄，並重啟 Docker 服務：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir -p /mnt/docker_data/docker_root
+</span></span><span style="display:flex;"><span>sudo systemctl restart docker
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="option-b-透過-volume-掛載到容器中-我個人推薦更靈活"><strong>Option B: 透過 Volume 掛載到容器中 (我個人推薦，更靈活)</strong></h3>
+<p>這是我最推薦且更靈活的方式。你可以將 <code>/mnt/docker_data</code> 中的特定目錄，以 Volume 的形式掛載到你需要權限支持的 Docker 容器內部。這意味著只有需要特殊權限的資料才需要透過這個 ext4 虛擬磁碟，其他 Docker 資料仍可留在預設位置。</p>
+<p>例如，如果你的容器需要一個 <code>/app/data</code> 目錄來進行 <code>chown</code> 操作：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在虛擬磁碟中建立一個目錄，用於儲存容器的資料</span>
+</span></span><span style="display:flex;"><span>sudo mkdir /mnt/docker_data/my_container_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 運行你的 Docker 容器，並將該目錄掛載進去</span>
+</span></span><span style="display:flex;"><span>sudo docker run -v /mnt/docker_data/my_container_data:/app/data my_image
+</span></span></code></pre></div><p>現在，在容器內的 <code>/app/data</code> 目錄中，無論是 <code>chown</code> 還是其他任何權限相關的操作，都能被底層的 <code>ext4</code> 檔案系統正確處理。</p>
+<h3 id="注意">注意</h3>
+<p><strong>掛載點權限：</strong> 在掛載後，<code>/mnt/docker_data</code> 目錄的擁有者通常是 <code>root</code>。如果你希望你的普通使用者也能直接在這個目錄中寫入資料（例如建立檔案或目錄），你可能需要變更它的擁有權：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R youruser:youruser /mnt/docker_data
+</span></span></code></pre></div><p>將 <code>youruser</code> 替換為你的實際使用者名稱。</p>
+<p><strong>性能考量：</strong> 這種虛擬磁碟的方式，相較於直接在原生 <code>ext4</code> 分區上運行，會存在輕微的性能開銷，因為多了一層抽象。但對於大多數開發或輕量級應用來說，這種開銷通常可以接受。</p>
+<h1 id="如何擴大-grow-虛擬磁碟檔案的容量">如何擴大 (Grow) 虛擬磁碟檔案的容量</h1>
+<p>隨著你的 Docker 專案越來越龐大，20GB 的虛擬磁碟可能不再夠用。不用擔心，這個虛擬磁碟檔案 (<code>docker_disk.img</code>) 的大小是可以修改的。擴大 (Grow) 虛擬磁碟是比較簡單且安全的操作。</p>
+<p>在進行任何大小調整之前：</p>
+<h3 id="1--卸載檔案系統-雖然-ext4-支援熱擴展已掛載時調整大小但為了安全起見我建議先卸載它">1.  <strong>卸載檔案系統：</strong> 雖然 <code>ext4</code> 支援熱擴展（已掛載時調整大小），但為了安全起見，我建議先卸載它。</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo umount /mnt/docker_data
+</span></span></code></pre></div><h3 id="2--檔案系統檢查-在調整大小之前檢查以確保其完整性">2.  <strong>檔案系統檢查：</strong> 在調整大小之前，檢查以確保其完整性。</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo e2fsck -f docker_disk.img
+</span></span></code></pre></div><ul>
+<li><code>e2fsck</code>：檢查並修復 <code>ext2</code>/<code>ext3</code>/<code>ext4</code> 檔案系統。</li>
+<li><code>-f</code>：forced alias，即使檔案系統看起來是乾淨的。</li>
+</ul>
+<h2 id="1-擴展磁碟-image-檔案">1. 擴展磁碟 image 檔案</h2>
+<p>你可以使用 <code>truncate</code> 或 <code>dd</code> 來增加底層 image 檔案的大小。<code>truncate</code> 對於稀疏檔案（<code>dd if=/dev/zero</code> 所創建的檔案）通常更快。</p>
+<p><strong>使用 <code>truncate</code> (推薦，快速增加空間)：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在現有檔案基礎上，額外增加 10GB 的空間</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果原始檔案是 20GB，這將使其變成 30GB</span>
+</span></span><span style="display:flex;"><span>sudo truncate -s +10G docker_disk.img
+</span></span></code></pre></div><ul>
+<li><code>+10G</code>：表示在當前檔案大小的基礎上增加 10 gigabytes。你也可以使用 <code>M</code> 代表 megabytes 等單位。</li>
+</ul>
+<p><strong>使用 <code>dd</code> (如果你偏好，但對於大容量增加會較慢)：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在檔案末尾追加 10GB 的零</span>
+</span></span><span style="display:flex;"><span>sudo dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/zero of<span style="color:#f92672">=</span>docker_disk.img bs<span style="color:#f92672">=</span>1M seek<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>stat -c %s docker_disk.img<span style="color:#66d9ef">)</span> count<span style="color:#f92672">=</span><span style="color:#ae81ff">10000</span> conv<span style="color:#f92672">=</span>notrunc
+</span></span></code></pre></div><ul>
+<li><code>seek=$(stat -c %s docker_disk.img)</code>：這告訴 <code>dd</code> 從檔案的當前末尾開始寫入，<code>stat -c %s</code> 會返回檔案的位元組大小。</li>
+<li><code>count=10000</code>：追加 10000 MB (10GB)。</li>
+<li><code>conv=notrunc</code>：確保 <code>dd</code> 是追加而不是截斷檔案。</li>
+</ul>
+<h2 id="2-重新掛載磁碟-image">2. 重新掛載磁碟 image</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mount -o loop docker_disk.img /mnt/docker_data
+</span></span></code></pre></div><h2 id="3-調整-ext4-檔案系統大小">3. 調整 <code>ext4</code> 檔案系統大小</h2>
+<p>一旦底層檔案變大，你就可以告訴 <code>ext4</code> 檔案系統去使用這些新增的空間。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查找你的虛擬磁碟被分配到的 loop 設備 (例如：/dev/loop0)</span>
+</span></span><span style="display:flex;"><span>losetup -a | grep docker_disk.img
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 執行 resize2fs 命令來擴展檔案系統</span>
+</span></span><span style="display:flex;"><span>sudo resize2fs /dev/loop0 <span style="color:#75715e"># 將 /dev/loop0 替換為實際的 loop 設備名稱</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者，如果檔案系統已經掛載，通常也可以直接：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sudo resize2fs /mnt/docker_data</span>
+</span></span></code></pre></div><ul>
+<li><code>resize2fs</code> 會自動檢測可用的最大空間，並將檔案系統調整到填滿為止。</li>
+<li>如果檔案系統已掛載，<code>resize2fs</code> 通常可以進行「線上」擴展，意味著你不必先卸載它。然而，如果可能的話，卸載仍然是最安全的做法。</li>
+</ul>
+<h1 id="結語">結語</h1>
+<p>雖然 Chromebook 內建的 eMMC 空間和 exFAT 硬碟的權限問題讓我碰了一鼻子灰，但透過在 exFAT 硬碟上建立 ext4 虛擬磁碟的巧妙方法，我成功地為我的 Docker 環境開闢了一片新天地。這不僅解決了儲存和權限的雙重痛點，也讓我對 Linux 檔案系統和 Docker 的底層運作有了更深刻的理解。</p>
+<blockquote>
+<p>這是我首次使用 LLM 幫我潤稿，把我的備忘錄轉換成一篇完整的 blog 筆記。因為我的文筆本來就不太好，使用 LLM 潤飾後真的比較能夠容易閱讀許多。儘管許多地方都還是有濃厚的 「AI 味兒」，例如過多的條列和過於誇大的口述，都不太像是我會說出的話。之後我會再試試看怎麼樣寫出更容易閱讀的文章。（這段文字是我親筆寫出來的，要不然給 AI 潤我真的不知道他會給我潤成什麼鬼樣）</p></blockquote>
+<!-- 希望我的這番「折騰」，能為同樣被這些問題困擾的朋友們提供一個實用的解決方案。如果你有任何疑問，或是有更棒的技巧，都非常歡迎在下方留言交流！ -->
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li><a href="https://superuser.com/questions/693158/can-i-expand-the-size-of-a-file-based-disk-image">Can I expand the size of a file based disk image?</a></li>
+<li>Refined by Gemini 2.5 Flash</li>
+</ul>
+<hr>
+
+				<aside>
+  <div>
+    <div>
+      <h3>Latest Posts</h3>
+    </div>
+    <div>
+      <ul>
+        
+        <li><a href="/zh-tw/posts/2025-06-05-docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        
+        <li><a href="/zh-tw/posts/2025-03-15-travel-to-kenting/">用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</a></li>
+        
+        <li><a href="/zh-tw/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        
+        <li><a href="/zh-tw/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        
+        <li><a href="/zh-tw/posts/cssc-03/">CSSC - EP.3 指令集解析</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+			</div>
+		</article>
+	</main>
+
+
+	<footer>
+	<div>&copy; 2025 - <a class="no-underline" href="/"><b>ljcucc blog</b></a>
+	×
+	(<a class="no-underline" href="https://ljcu.cc"><b>Homesite</b></a>)
+	×
+	(<a class="no-underline" href="https://furries.init.engineer/@wolf"><b>Fediverse</b></a>)
+	×
+	(<a class="no-underline" href="https://bsky.app/profile/ljcu.cc"><b>Bluesky</b></a>)
+	×
+	(<a class="no-underline" href="https://github.com/ljcucc"><b>Github</b></a>)
+	</div>
+</footer>
+
+</body>
+
+<script>
+
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
+  gsap.set(selector, { opacity: 1 });
+
+  const beforeOpacity = 0;
+
+  gsap.from(selector, {
+    delay: 0.35,
+        ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+        duration: 0.6,
+        y: 8,
+        autoAlpha: beforeOpacity,
+        stagger: 0.05,
+        lazy: true,
+      });
+</script>
+</html>

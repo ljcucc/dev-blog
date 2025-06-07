@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,12 +10,13 @@
 		}
 
 	</style>
-	<title>CSSC - EP.1 : The starting point</title>
+	<title>CSSC - EP.1 : The Starting Point</title>
 	<meta name="description" content="Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
 	
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
+
   
 
 
@@ -25,35 +26,33 @@
 </head>
 <body>
 	<header>
-	
+  
 
-	<div class="title">
-		<a href="/" class="no-underline">ljcucc blog</a>
-	</div>
+  <div class="title">
+    <a href="/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
 
-	<div class="wrapper">
-		<div class="marquee">
-			
-			<p>
-				Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org
-			</p>
-			<p>
-				Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org
-			</p>
-		</div>
-	</div>
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
 
-	<div class="title menu">
-		<a href="/tags" class="no-underline">menu</a>
-	</div>
+  <div class="title menu">
+    <a href="/tags" class="no-underline">menu</a>
+  </div>
 
-	
+  
 </header>
 
 	
 	<main>
 		<article>
-			<h1 class="post">CSSC - EP.1 : The starting point</h1>
+			<h1 class="post">CSSC - EP.1 : The Starting Point</h1>
 			<div class="metadata">
 			<b><time>2023-01-18 23:59:59</time></b>
 		       
@@ -63,29 +62,41 @@
         	       
 			</div>
 
+			
+<p>
+   Available in 
+  <a href="/zh-tw/posts/cssc-01/" hreflang="zh-TW">
+    繁體中文
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
 			<div class="content">
 				<blockquote>
-<p>因為blog比較晚才架設的關係，所以累積了比較多的東西，會在後面幾個post一起補上。</p>
-</blockquote>
-<p>這次要介紹的元件的設計早在專案開始前的幾年前就已經在breadboard上實作過，這次因為剛好遇到學校的期末專題，就想要以重現之前的專案、實踐新的計畫為題，製作一個全新的CPU計畫。</p>
+<p>Since the blog was set up relatively late, a lot of content has accumulated, which I&rsquo;ll be catching up on in the next few posts.</p></blockquote>
+<p>The designs for the components I&rsquo;m about to introduce were actually implemented on breadboards several years <em>before</em> this project even began. This time, with the school&rsquo;s final project deadline approaching, I decided to revisit my previous work and incorporate new ideas, embarking on a brand-new CPU project.</p>
 <p>.</p>
-<h2 id="基礎架構的設計">基礎架構的設計</h2>
-<p>為了交作業，將就採用之前已經在breadboard實作過的設計。主要是參考自 ben eater 8 bits breadboard CPU 的 project，也是絕大部分的設計的啟發點。</p>
-<p>目前已經完成的主要實作點有兩個：</p>
+<h2 id="basic-architecture-design">Basic Architecture Design</h2>
+<p>To meet the assignment deadline, I decided to adapt the designs I had previously implemented on breadboards. The core reference, and the inspiration for most of the design, comes from Ben Eater&rsquo;s 8-bit breadboard CPU project.</p>
+<p>Currently, two main implementation points have been completed:</p>
 <ul>
-<li>ALU（同ben eater 專案中的ALU，但目前沒有實作flags）</li>
-<li>Register A、B（同ben eater 專案中的Register A、B）</li>
+<li>ALU (same as Ben Eater&rsquo;s ALU, but without flags implemented yet)</li>
+<li>Register A, B (same as Ben Eater&rsquo;s Register A, B)</li>
 </ul>
-<p>ALU（算術邏輯單元）是一種硬體元件，主要負責處理算術運算和邏輯運算。Registers 是一種電腦內存，用於存儲和訪問資料。</p>
-<p>在我們的設計中，Register A 和 B 用於存儲加法和減法運算的兩個數值。ALU目前只有加減法功能，但我們可以用一些小技巧來實現其他功能，例如位元移動等。</p>
-<p>我們的ALU能夠實現的功能包含加法、減法，但不包含與、或、還有比較運算，這些運算在運算過程中會用到 Register A 與 B 來儲存資料。當ALU執行運算後，結果可以存在一個結果register中，供後續程式使用。另外，我們也計畫擴充ALU的功能，例如乘法、除法等運算。</p>
-<p>總的來說，ALU和Registers是我們電腦設計中不可或缺的元件，它們提供了快速、高效的運算能力，為後續的程式執行提供了基礎。</p>
+<p>An ALU (Arithmetic Logic Unit) is a hardware component primarily responsible for processing arithmetic and logical operations. Registers are a type of computer memory used for storing and accessing data.</p>
+<p>In our design, Register A and B are used to store the two values for addition and subtraction operations. The ALU currently only supports addition and subtraction, but we can employ some clever tricks to implement other functions, such as bitwise shifts.</p>
+<p>Our ALU currently supports addition and subtraction. It does not include bitwise AND, OR, or comparison operations. These operations would typically use Register A and B to store data during computation. After the ALU performs an operation, the result can be stored in a result register for subsequent program use. Additionally, we plan to expand the ALU&rsquo;s functionality to include operations like multiplication and division.</p>
+<p>In summary, the ALU and Registers are indispensable components in our computer design. They provide fast, efficient computational capabilities, forming the foundation for subsequent program execution.</p>
 <p>.</p>
-<h1 id="為什麼不用-breadboard">為什麼不用 breadboard？</h1>
-<p>在使用 breadboard 進行電路實驗時，有一個重要的因素需要注意，那就是 breadboard 的不固定性。由於 breadboard 的接腳不是固定的，因此在插拔電子元件、運輸移動時可能會造成接觸不良，導致電路無法正常運作。</p>
-<p>因此，為了避免 breadboard 的不固定性導致的接觸不良問題，我決定使用直接焊接的方式，將電子元件焊在萬用板（General purpose PCB）上。這樣可以確保電路更穩定、更可靠，並且可以長期使用，運輸時電路也不太容易受到影響，這樣我就可以運到學校教作業。</p>
+<h1 id="why-not-use-breadboards">Why not use breadboards?</h1>
+<p>When conducting circuit experiments using breadboards, an important factor to consider is their inherent instability. Because breadboard contacts are not fixed, inserting or removing electronic components, or even during transport, can lead to poor contact, causing the circuit to malfunction.</p>
+<p>Therefore, to avoid contact issues caused by the instability of breadboards, I decided to use direct soldering, soldering the electronic components onto a perfboard (general purpose PCB). This ensures greater circuit stability and reliability, allowing for long-term use and making the circuit less susceptible to issues during transportation, which is crucial for delivering it to school for the assignment.</p>
 <p>.</p>
-<h1 id="設計的實作">設計的實作</h1>
+<h1 id="design-implementation">Design Implementation</h1>
 <p>
 <figure>
   <img src="./p1.jpg" alt="" />
@@ -93,15 +104,15 @@
 
 
 </p>
-<p><em>上圖為最終拼裝結果</em></p>
-<p><em>圖片左側被裁切掉的鐵盒子是一個 5V 10A 的電源供應器。</em></p>
+<p><em>The image above shows the final assembled result.</em></p>
+<p><em>The metal box cropped out on the left side of the image is a 5V 10A power supply.</em></p>
 <p>.</p>
-<p>為了要讓整體收納更方便，我決定在測試每個板子的功能正常後，將電腦的架構改為塔式主機。這種架構可以將主機板、顯示卡、硬碟等主要元件組合在一起，並放置在一個單獨的塔狀箱體內，使得整體收納更為方便。</p>
-<p>然而，這樣的架構帶來了一些困難。首先，因為整個電腦組件都被密封在塔狀箱體內，所以debug的方便性受到了影響。如果出現問題，我們需要打開整個箱體才能檢查內部組件。另外，塔式主機的散熱也比較困難，我們需要在設計時對散熱問題進行充分考慮。</p>
-<p>尽管如此，我還是選擇犧牲了debug的方便性，換取塔式主機架構的方便性。因為在我們的項目中，收納的方便性是一個很重要的因素，我們需要將電腦組件安置在最小的空間內，以達到最佳的收納效果。</p>
+<p>To make the overall storage more convenient, I decided to change the computer&rsquo;s architecture to a tower case design after testing the functionality of each board. This architecture allows the motherboard, graphics card, hard drives, and other main components to be combined and placed within a single tower-shaped enclosure, making storage much more convenient.</p>
+<p>However, such an architecture presents some challenges. Firstly, because all computer components are sealed within the tower case, debugging becomes less convenient. If a problem arises, we need to open the entire case to inspect the internal components. Additionally, heat dissipation in a tower case is more challenging, requiring thorough consideration during the design phase.</p>
+<p>Despite these difficulties, I chose to sacrifice debugging convenience for the compactness of the tower case architecture. Because in our project, storage convenience is a very important factor; we need to arrange the computer components within the minimal space to achieve the best storage effect.</p>
 <p>.</p>
-<h1 id="部件介紹">部件介紹</h1>
-<p>接下來是部件的實際圖片。</p>
+<h1 id="component-introduction">Component Introduction</h1>
+<p>Next are the actual images of the components.</p>
 <p>
 <figure>
   <img src="p4.png" alt="" />
@@ -109,11 +120,11 @@
 
 
 </p>
-<p><em>圖中展示了各元件之間的關係圖。其中包含兩部分： Register（具有 Output 之直接連接 ALU 單元的性質）、ALU （目前僅具有加減法運算功能）。</em></p>
-<p>剛剛介紹過了，元件大致上有兩種：</p>
+<p><em>The diagram shows the relationships between the various components. It includes two parts: Registers (which have the property of directly connecting their output to the ALU unit) and the ALU (currently only capable of addition and subtraction).</em></p>
+<p>As just introduced, there are broadly two types of components:</p>
 <ul>
-<li>Register（Output 直通 ALU 單元）</li>
-<li>ALU （目前只有加減法）</li>
+<li>Registers (Output directly connected to the ALU unit)</li>
+<li>ALU (Currently only addition and subtraction)</li>
 </ul>
 <h2 id="register-ab">Register (A,B)</h2>
 <p>
@@ -123,7 +134,7 @@
 
 
 </p>
-<p>這個部分的主題是 Register (A,B)，附有一張圖片來呈現它的外觀。設計的參考來源是 <a href="https://eater.net/8bit/registers">Ben Eater 的 Register 設計</a>，但是我們對於 bus 接口和 internal connection to ALU 進行了修改，並對公排針 pinout 進行了調整。這個設計是一個重要的部分，用於存儲加法和減法運算的兩個數值。</p>
+<p>This section focuses on Register (A,B), accompanied by an image to show its appearance. The design reference is <a href="https://eater.net/8bit/registers">Ben Eater&rsquo;s Register design</a>, but we made modifications to the bus interface and the internal connection to the ALU, and adjusted the male header pinout. This design is a crucial part, used for storing the two values for addition and subtraction operations.</p>
 <p>.</p>
 <h2 id="alu">ALU</h2>
 <p>
@@ -133,14 +144,14 @@
 
 
 </p>
-<p>這個部分的主題是 ALU，附有一張圖片來呈現它的外觀。設計的參考來源是 <a href="https://eater.net/8bit/alu">Ben Eater 的 ALU 設計</a>，但是我們對於 bus 接口和ALU output的debug 進行了修改，並對公排針 pinout 進行了調整。ALU (Arithmetic Logic Unit)是電腦硬體中的一個重要部分，負責處理算術運算和邏輯運算。我們的ALU能夠實現的功能包含加法、減法，這些運算在運算過程中會用到 Register A 與 B 來儲存資料。</p>
+<p>This section focuses on the ALU, accompanied by an image to show its appearance. The design reference is <a href="https://eater.net/8bit/alu">Ben Eater&rsquo;s ALU design</a>, but we made modifications to the bus interface and the ALU output for debugging, and adjusted the male header pinout. The ALU (Arithmetic Logic Unit) is a vital part of computer hardware, responsible for processing arithmetic and logical operations. Our ALU currently supports addition and subtraction; these operations use Register A and B to store data during computation.</p>
 <p>.</p>
-<h2 id="頂層-breadboard">頂層 breadboard</h2>
-<p>在最初的實作過程中，我最初的目的是避免使用 breadboard。然而在進行實作時，我發現自己在使用萬用板，並把電子元件使用排母放置在板子上並進行互相連結，這樣的操作方式與 breadboard 沒有本質上的區別。因此，為了能夠更加有效率地實現電路運作，我最終決定放棄使用萬用板，而改用 breadboard 來實現電路運作。</p>
-<h1 id="下一篇">下一篇</h1>
-<p>在進行實驗過程中，我意識到我缺少一種工具，即 邏輯分析儀，以便評估我所使用元件的訊號輸入和輸出。然而，當時我沒有在此事情上花太多時間思考。在後來參考了 Ben Eater 在 6502 computer 中使用 Arduino 當 邏輯分析儀的實例後，我也決定使用 Arduino 來製作一個簡單的 邏輯分析工具。</p>
-<p>下一篇會簡述我使用了什麼方法，如何利用 Arduino 以及 processing 來製作這個簡單的 邏輯分析工具及其對應的軟體。</p>
-<p><a href="/posts/cssc-02">下一篇</a></p>
+<h2 id="top-level-breadboard">Top-level Breadboard</h2>
+<p>In the initial implementation process, my primary goal was to avoid using breadboards. However, during implementation, I found myself using perfboards, mounting components using female headers and connecting them. This method, I realized, was fundamentally no distinction from using a breadboard. Consequently, to achieve more efficient circuit operation, I ultimately decided to abandon the perfboard approach and revert to using breadboards for the circuit.</p>
+<h1 id="next-post">Next Post</h1>
+<p>During the experimentation process, I realized I was missing a crucial tool: a logic analyzer, which is essential for evaluating the signal input and output of the components I was using. At that time, I didn&rsquo;t spend much time thinking about this issue. Later, after referencing Ben Eater&rsquo;s example of using an Arduino as a logic analyzer in his 6502 computer project, I also decided to use an Arduino to build a simple logic analysis tool.</p>
+<p>The next post will briefly explain the methods I used, how I utilized Arduino and Processing to build this simple logic analysis tool, and its accompanying software.</p>
+<p><a href="/posts/cssc-02/">Next Post</a></p>
 
 				<aside>
   <div>
@@ -150,15 +161,15 @@
     <div>
       <ul>
         
-        <li><a href="/posts/docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        <li><a href="/posts/2025-06-05-docker-on-img/">Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</a></li>
         
-        <li><a href="/posts/update-2023-04-2/">你有找到使用工具時開心的人嗎？</a></li>
+        <li><a href="/posts/2025-03-15-travel-to-kenting/">Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</a></li>
         
-        <li><a href="/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        <li><a href="/posts/ic-forest-01/">Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</a></li>
         
-        <li><a href="/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        <li><a href="/posts/cssc-03/">CSSC - EP.3: Instruction Set Analysis</a></li>
         
-        <li><a href="/posts/cssc-03/">CSSC - EP.3 指令集解析</a></li>
+        <li><a href="/posts/cssc-02/">CSSC - EP.2: Homebrew a Simple Signal Analyzer</a></li>
         
       </ul>
     </div>
@@ -190,7 +201,8 @@
   gsap.registerPlugin(CustomEase);
   gsap.registerPlugin(ScrollTrigger);
 
-  const selector = ".post, .metadata, .content, .summary";
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
   gsap.set(selector, { opacity: 1 });
 
   const beforeOpacity = 0;
