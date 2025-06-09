@@ -167,29 +167,29 @@
 </span></span></code></pre></div><h3 id="usage">Usage</h3>
 <p>yne/vcd uses stdin/stdout for input and output. You can directly pipe bash input into it and output to a file, or print directly to the terminal:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># input from file and output to a file</span>
-</span></span><span style="display:flex;"><span>vcd/vcd &lt; result.vcd &gt; result.txt
+</span></span><span style="display:flex;"><span>vcd/vcd &lt; result.vcd &gt; result.yml
 </span></span></code></pre></div><p>The result will look like this:</p>
-<pre tabindex="0"><code>unknown token : ivl_for_loop0
-unknown token : dumpall
-global:
-  zoom: 9
-  date: Mon Jun  9 05:22:45 2025
-  total: 13
-  skip: 0
-  time:
-    scale: 1.00
-    unit: ns
-    line        : &#34;0                                                                                         10                                                                                        &#34;
-channels:
-  tester:
-    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
-  m:
-    clk         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁&#34;
-    rst         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁&#34;
-    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
-  :
-    i [31:0]    : &#34;x        x        0        1        2        3        4        5        6        7        8        9        A        &#34;
-</code></pre><h2 id="other-solutions">Other Solutions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">unknown token </span>: <span style="color:#ae81ff">ivl_for_loop0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">unknown token </span>: <span style="color:#ae81ff">dumpall</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">zoom</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">date</span>: <span style="color:#ae81ff">Mon Jun  9 05:22:45 2025</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">total</span>: <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">skip</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">time</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">scale</span>: <span style="color:#ae81ff">1.00</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">unit</span>: <span style="color:#ae81ff">ns</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">line        </span>: <span style="color:#e6db74">&#34;0                                                                                         10                                                                                        &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">channels</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tester</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">count [1:0] </span>: <span style="color:#e6db74">&#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">m</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">clk         </span>: <span style="color:#e6db74">&#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rst         </span>: <span style="color:#e6db74">&#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">count [1:0] </span>: <span style="color:#e6db74">&#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;</span>
+</span></span><span style="display:flex;"><span>  :
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">i [31:0]    </span>: <span style="color:#e6db74">&#34;x        x        0        1        2        3        4        5        6        7        8        9        A        &#34;</span>
+</span></span></code></pre></div><h2 id="other-solutions">Other Solutions</h2>
 <p>I&rsquo;ve also found other solutions, each with different usage methods:</p>
 <h3 id="vcdrom-web-app">vcdrom (Web App)</h3>
 <p>vcdrom is a web application version of a VCD viewer.</p>
@@ -380,29 +380,29 @@ vvp main_test.vvp
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iverilog -o main_test.vvp main_test.v
 </span></span><span style="display:flex;"><span>vvp main_test.vvp
-</span></span><span style="display:flex;"><span>vcd/vcd &lt; result.vcd &gt; result.txt
-</span></span></code></pre></div><p>Below is <code>result.txt</code>:</p>
-<pre tabindex="0"><code>unknown token : ivl_for_loop0
-unknown token : dumpall
-global:
-  zoom: 9
-  date: Mon Jun  9 05:22:45 2025
-  total: 13
-  skip: 0
-  time:
-    scale: 1.00
-    unit: ns
-    line        : &#34;0                                                                                         10                                                                                        &#34;
-channels:
-  tester:
-    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
-  m:
-    clk         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁&#34;
-    rst         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁&#34;
-    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
-  :
-    i [31:0]    : &#34;x        x        0        1        2        3        4        5        6        7        8        9        A        &#34;
-</code></pre><blockquote>
+</span></span><span style="display:flex;"><span>vcd/vcd &lt; result.vcd &gt; result.yml
+</span></span></code></pre></div><p>Below is <code>result.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">unknown token </span>: <span style="color:#ae81ff">ivl_for_loop0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">unknown token </span>: <span style="color:#ae81ff">dumpall</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">global</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">zoom</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">date</span>: <span style="color:#ae81ff">Mon Jun  9 05:22:45 2025</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">total</span>: <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">skip</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">time</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">scale</span>: <span style="color:#ae81ff">1.00</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">unit</span>: <span style="color:#ae81ff">ns</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">line        </span>: <span style="color:#e6db74">&#34;0                                                                                         10                                                                                        &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">channels</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tester</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">count [1:0] </span>: <span style="color:#e6db74">&#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">m</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">clk         </span>: <span style="color:#e6db74">&#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rst         </span>: <span style="color:#e6db74">&#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">count [1:0] </span>: <span style="color:#e6db74">&#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;</span>
+</span></span><span style="display:flex;"><span>  :
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">i [31:0]    </span>: <span style="color:#e6db74">&#34;x        x        0        1        2        3        4        5        6        7        8        9        A        &#34;</span>
+</span></span></code></pre></div><blockquote>
 <p>Some TAs seem to have a bit of a &ldquo;reading disability&rdquo; with these types of diagrams ( ・∇・ ???)
 They even said I was just trying to be cool by showing them such diagrams (Me: ???</p>
 <p>I won&rsquo;t reveal who it was specifically, but you all know the type ( ◠‿◠ )b</p></blockquote>
