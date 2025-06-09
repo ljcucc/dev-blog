@@ -6,8 +6,15 @@
     <description>Recent content in Posts on ljcucc blog</description>
     <generator>Hugo</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 05 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 08 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing and Testing Verilog on macOS / Linux (and even Android) with Icarus Verilog</title>
+      <link>/posts/2025-06-08-verilog/</link>
+      <pubDate>Sun, 08 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>/posts/2025-06-08-verilog/</guid>
+      <description>&lt;p&gt;Are you like me? You&amp;rsquo;re in class, asked to write Verilog using Quartus II, only to find out it&amp;rsquo;s a Windows-only application? Σ(&amp;rsquo;◉⌓◉’) This leaves us students with Macs or Linux installations staring blankly at our screens. Don&amp;rsquo;t worry! This post will tell you how to handle Verilog design on macOS and Linux, and even do some proof-of-concept testing! * (You can even run it on Android phones/tablets!)&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</title>
       <link>/posts/2025-06-05-docker-on-img/</link>

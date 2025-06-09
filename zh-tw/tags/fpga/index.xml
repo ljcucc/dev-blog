@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FPGA on ljcucc blog</title>
+    <link>/zh-tw/tags/fpga/</link>
+    <description>Recent content in FPGA on ljcucc blog</description>
+    <generator>Hugo</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Sun, 08 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/zh-tw/tags/fpga/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</title>
+      <link>/zh-tw/posts/2025-06-08-verilog/</link>
+      <pubDate>Sun, 08 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/2025-06-08-verilog/</guid>
+      <description>&lt;p&gt;你是不是也跟我一樣，上課被要求用 Quartus II 寫 Verilog，結果發現它竟然只有 Windows 版？Σ(&amp;rsquo;◉⌓◉’) 搞得我們這些拿 Mac 或灌 Linux 的學生，只能對著螢幕乾瞪眼。別擔心！這篇文章就是要來告訴你，如何在 macOS 和 Linux 上搞定 Verilog 設計，還能順便做概念驗證！*（甚至可以跑在 Android 手機/平板上跑）&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

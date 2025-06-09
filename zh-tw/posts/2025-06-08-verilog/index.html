@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>
+	  body{
+			font-family:monospace;
+		}
+
+	</style>
+	<title>利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</title>
+	<meta name="description" content="嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+
+  
+
+
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+
+		
+		<link href="https://fonts.googleapis.com/css2?family=Noto&#43;Serif&#43;TC:wght@300;400;500&amp;family=LXGW&#43;WenKai&#43;Mono&#43;TC&amp;display=swap" rel="stylesheet">
+
+		<style>
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		div,
+		article {
+		font-family: "Noto Serif TC", serif;
+		}
+
+
+		h1,
+		h2 {
+		font-family: "Noto Serif TC", serif;
+		}
+		</style>
+		
+</head>
+<body>
+	<header>
+  
+
+  <div class="title">
+    <a href="/zh-tw/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
+
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+      <p>嗨！歡迎來到我的新blog！我會在這裡刊登一些新聞、想法、研究甚至更多⋯⋯歡迎在此久留!     快來加入官方的matrix的討論群組 #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
+
+  <div class="title menu">
+    <a href="/zh-tw/tags" class="no-underline">menu</a>
+  </div>
+
+  
+</header>
+
+	
+	<main>
+		<article>
+			<h1 class="post">利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</h1>
+			<div class="metadata">
+			<b><time>2025-06-08</time></b>
+		       
+		           <a href="/zh-tw/tags/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98">學習筆記</a>
+        	       
+		           <a href="/zh-tw/tags/verilog">verilog</a>
+        	       
+		           <a href="/zh-tw/tags/fpga">FPGA</a>
+        	       
+		           <a href="/zh-tw/tags/asic">ASIC</a>
+        	       
+			</div>
+			<div>
+			閱讀時間大約 5 分鐘
+			</div>
+
+			
+<p>
+   Available in 
+  <a href="/posts/2025-06-08-verilog/" hreflang="en-US">
+    English
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
+			<div class="content">
+				<p>你是不是也跟我一樣，上課被要求用 Quartus II 寫 Verilog，結果發現它竟然只有 Windows 版？Σ(&rsquo;◉⌓◉’) 搞得我們這些拿 Mac 或灌 Linux 的學生，只能對著螢幕乾瞪眼。別擔心！這篇文章就是要來告訴你，如何在 macOS 和 Linux 上搞定 Verilog 設計，還能順便做概念驗證！*（甚至可以跑在 Android 手機/平板上跑）</p>
+<h1 id="軟體安裝">軟體安裝</h1>
+<p>我會推薦這兩個軟體，如果沒其他偏好可以直接用下列工具開始：</p>
+<ul>
+<li>Icarus Verilog</li>
+<li>GTKWave
+<ul>
+<li>如果你想要全純 CLI，可以用 yne/vcd。（參見下面的介紹）</li>
+</ul>
+</li>
+</ul>
+<h2 id="icarus-verilog">Icarus Verilog*</h2>
+<p>在晶片設計流程中，iverilog 主要處理的是 <strong>Verilog 程式碼的「功能驗證」</strong>。<strong>這表示</strong>它能讓你編譯 Verilog 程式碼（這通常被稱為 <strong>RTL 設計</strong>，即寄存器傳輸級設計），然後透過其內建的模擬器 <code>vvp</code> 執行，確認邏輯行為是否符合預期。模擬完成後，它會產生 <code>vcd</code> 波形檔 (<a href="https://en.wikipedia.org/wiki/Value_change_dump">Value Change Dump</a> File)，方便你分析訊號變化。</p>
+<blockquote>
+<p><strong>Icarus Verilog</strong> ` 專注於程式碼的編譯與功能模擬，但<strong>無法處理後續的「硬體實作」部分</strong>，例如邏輯合成 (Synthesis)、佈局 (Layout) 或燒錄到 FPGA/ASIC 等。因此，這篇文章的目標是幫助你專注在「把程式寫對」上，而不涉及真實硬體的實現喔！(ゝ∀･)</p></blockquote>
+<p>安裝方法很簡單，都可以使用套件管理器安裝：</p>
+<h3 id="linux">Linux</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install iverilog
+</span></span></code></pre></div><h3 id="android-w-termux">Android (w/ Termux)</h3>
+<p>如果你有 android 手機或平板也可以通過 termux 裝在裝置上。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pkg update
+</span></span><span style="display:flex;"><span>pkg install iverilog
+</span></span></code></pre></div><h3 id="macos">macOS</h3>
+<blockquote>
+<p>(請確保你已經安裝好了 <a href="https://brew.sh">brew</a> )</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install icarus-verilog
+</span></span></code></pre></div><p>有很多軟體可以瀏覽 <code>vcd</code> ，這裡介紹的都是開源的方案：</p>
+<h2 id="gtkwave-gui">GTKWave (GUI)</h2>
+<p>GTKWave 是一個開源、圖形化、用於檢視 <code>vcd</code> 波形檔的瀏覽器。它能打開 Icarus Verilog 產生的 .vcd 波形檔案，讓你以圖形化的方式檢查設計中各個訊號的時序和邏輯狀態。</p>
+<h3 id="安裝">安裝</h3>
+<h3 id="linux-1">Linux</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install gtkwave
+</span></span></code></pre></div><blockquote>
+<p>android 的部分因為跑 GUI 要多講一道手續，我推薦用 yne/vcd 比較省事。</p></blockquote>
+<h3 id="macos-1">macOS</h3>
+<blockquote>
+<p>目前 GTKWave on macOS Sonoma 似乎遇到了一些問題，需要一些補丁才能跑起來。如果真的跑不起來可以用接下來的方法 (<a href="https://github.com/gtkwave/gtkwave/issues/250">#250</a>)</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 請確保你已經安裝好了 brew： https://brew.sh</span>
+</span></span><span style="display:flex;"><span>brew install --cask gtkwave
+</span></span></code></pre></div><h2 id="ynevcd-cli">yne/vcd (CLI)</h2>
+<p>如果你偏好純文字介面，或者希望在遠端伺服器上快速檢視波形，我推薦 yne 的 vcd: <a href="https://github.com/yne/vcd">https://github.com/yne/vcd</a></p>
+<blockquote>
+<p>作為要教作業的學生⋯⋯之前遇到很機車的助教，說看不懂 yne/vcd 的波形圖 ( ・∇・?)</p></blockquote>
+<h3 id="編譯安裝">編譯+安裝</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/yne/vcd.git; cd vcd
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># install into your environmet</span>
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or directly use it</span>
+</span></span><span style="display:flex;"><span>cd ../
+</span></span><span style="display:flex;"><span>vcd/vcd --help
+</span></span></code></pre></div><h3 id="使用方法">使用方法</h3>
+<p>yne/vcd 是通過 stdin/stdout 輸入輸出的，可以直接 bash pipe 進去然後輸出到檔案裡，也可以直接 print 到 terminal 中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># input from file and output to a file</span>
+</span></span><span style="display:flex;"><span>vcd/vcd &lt; result.vcd &gt; result.txt
+</span></span></code></pre></div><p>結果會像下面這樣</p>
+<pre tabindex="0"><code>unknown token : ivl_for_loop0
+unknown token : dumpall
+global:
+  zoom: 9
+  date: Mon Jun  9 05:22:45 2025
+  total: 13
+  skip: 0
+  time:
+    scale: 1.00
+    unit: ns
+    line        : &#34;0                                                                                         10                                                                                        &#34;
+channels:
+  tester:
+    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
+  m:
+    clk         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁&#34;
+    rst         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁&#34;
+    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
+  :
+    i [31:0]    : &#34;x        x        0        1        2        3        4        5        6        7        8        9        A        &#34;
+</code></pre><h2 id="其他方案">其他方案</h2>
+<p>我還有找到其他方案，用法也都不盡相同</p>
+<h3 id="vcdrom-web-app">vcdrom (Web App)</h3>
+<p>vcdrom 是一個網頁應用程式版的 vcd viewer。</p>
+<p>Website: <a href="https://vc.drom.io">https://vc.drom.io</a>
+Github repository: <a href="https://github.com/wavedrom/vcdrom">https://github.com/wavedrom/vcdrom</a></p>
+<h3 id="vaporview-vscode-extension">VaporView (VSCode Extension)</h3>
+<p>
+<figure>
+  <img src="./fig1.webp" alt="fig1" />
+</figure>
+
+
+</p>
+<p>VaporView 是一個 VSCode 插件的 vcd viewer</p>
+<p>Github repository: <a href="https://github.com/Lramseyer/vaporview">https://github.com/Lramseyer/vaporview</a></p>
+<h2 id="自己動手寫一個-vcd-檢視器">自己動手寫一個 VCD 檢視器？</h2>
+<p>檔案格式其實並不複雜，它主要紀錄了離散時間點上各個測試訊號的狀態變化。如果你對圖形化程式設計有興趣，甚至可以嘗試使用像是 <a href="https://processing.org">processing</a> 自己寫一個簡單的 VCD 波形檢視器優</p>
+<p>٩( ᐛ )و</p>
+<h1 id="iverilog--gtkwave">iVerilog + GTKWave</h1>
+<p>Testbench 的結構大致會呈現如下：</p>
+<p>你一定會有一個 main module，這裡假設是 <code>main.v</code> 和 main：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> main(
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>    ... your code here ...
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
+</span></span></code></pre></div><p>testbench 基本上就是一個程式測資，和任何程式的 unit test 一樣，他是一個可以運作的程式（在這裏是電路）</p>
+<p>你一定會這幾個段落：</p>
+<ol>
+<li>測試的輸入和輸出 變數/wire/暫存器，偶爾可能還會有一些測試資料</li>
+<li>你需要在 tester 裡調用你自己的 main module（top level entry )</li>
+<li>你需要 clock 和留有一些 delay 給你的程式，如下定義</li>
+</ol>
+<p>main_test.v</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">`timescale</span> <span style="color:#ae81ff">1</span>ns<span style="color:#f92672">/</span> <span style="color:#ae81ff">1</span>ns
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">`include</span> <span style="color:#e6db74">&#34;main.v&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">module</span> tester();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// inputs for your main module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">reg</span> clk;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reg</span> reset;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reg</span> start;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">reg</span> din;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// outputs for your main module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// &gt; outputs should always be &#34;wire&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">wire</span> count_out;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">wire</span>[<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>] count_one;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">wire</span> dout_valid;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">wire</span> dout;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// your constants data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">reg</span>[<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">7</span>] data <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span><span style="color:#ae81ff">&#39;b01010010</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// This part will
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// connect your main module into tester module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    main m(
+</span></span><span style="display:flex;"><span>        .reset(reset),
+</span></span><span style="display:flex;"><span>        .clk(clk),
+</span></span><span style="display:flex;"><span>        .start(start),
+</span></span><span style="display:flex;"><span>        .din(din),
+</span></span><span style="display:flex;"><span>        .count_out(count_out),
+</span></span><span style="display:flex;"><span>        .count_one(count_one),
+</span></span><span style="display:flex;"><span>        .dout_valid(dout_valid),
+</span></span><span style="display:flex;"><span>        .dout(dout)
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// maybe some integer to count on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">integer</span> i;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// the part of only run once
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// this part is very important!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// this define the vvp (runtime) to output
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// the wave file result main_test.vcd
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// for later with the signals inside tester module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $dumpfile(<span style="color:#e6db74">&#34;main_test.vcd&#34;</span>);
+</span></span><span style="display:flex;"><span>        $dumpvars(<span style="color:#ae81ff">0</span>, tester);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        clk <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        reset <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        din <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// send a reset signal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// this means waiting 2 unit of time
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// as well as defined in $timescale
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        #<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        reset <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        #<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        reset <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>; i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>            din <span style="color:#f92672">=</span> data[i];
+</span></span><span style="display:flex;"><span>            #<span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// This is also very important!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// To stop the vvp simulation,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// you&#39;ll need this line
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        $finish;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// generate clock signal for every 1 unit of time
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// why not #2? because one cycle of clock
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// required two changes, high and low,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// so the program above will wait every 2 unit of time
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">always</span> #<span style="color:#ae81ff">1</span> clk <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>clk;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
+</span></span></code></pre></div><p>最後再執行這個 tester 就可以了。</p>
+<p>vvp 是 iverilog 的模擬環境，用來模擬你編譯好的 verilog。</p>
+<pre tabindex="0"><code>iverilog -o main_test.vvp main_test.v
+vvp main_test.vvp
+</code></pre><p>模擬完後理論上會出現一個 main_test.vcd</p>
+<ol>
+<li>在你的資料夾內，用 GTKWave File &gt; Open Tab 開啟這個檔案</li>
+<li>再SST裡選擇你的 module</li>
+<li>在下方選擇要觀測的訊號，按下最下面的 Insert</li>
+<li>然後就可以看到你的執行結果了。</li>
+</ol>
+<p>如果你再次模擬了程式，只需要 File &gt; Reload Waveform 或按下快捷鍵 Ctrl+Shift+R 即可載入最新結果</p>
+<h2 id="example-iverilog--ynevcd">Example: iVerilog + yne/vcd</h2>
+<p>如果你是用 termux 或你 ssh 到 remote machine，推薦採用這個純文字的方法。</p>
+<p>下面是一個簡單 counter 的範例：</p>
+<h3 id="mainv"><code>main.v</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> main (
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">input</span>  <span style="color:#66d9ef">wire</span>       clk,   <span style="color:#75715e">// Clock input
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">input</span>  <span style="color:#66d9ef">wire</span>       rst,   <span style="color:#75715e">// Asynchronous reset input (active high)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">output</span> <span style="color:#66d9ef">reg</span>  [<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] count  <span style="color:#75715e">// 2-bit output for the counter value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">always</span> @(<span style="color:#66d9ef">posedge</span> clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">posedge</span> rst) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (rst) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>      count <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">2</span><span style="color:#ae81ff">&#39;b00</span>;  <span style="color:#75715e">// Reset count to 00
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">end</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>      count <span style="color:#f92672">&lt;=</span> count <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span><span style="color:#ae81ff">&#39;b01</span>;  <span style="color:#75715e">// Increment count by 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
+</span></span></code></pre></div><h3 id="main_testv"><code>main_test.v</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">`timescale</span> <span style="color:#ae81ff">1</span>ns <span style="color:#f92672">/</span> <span style="color:#ae81ff">1</span>ns
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">`include</span> <span style="color:#e6db74">&#34;main.v&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">module</span> tester ();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">reg</span> clk;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">reg</span> rst;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">wire</span> [<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] count;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  main m (
+</span></span><span style="display:flex;"><span>      .clk  (clk),
+</span></span><span style="display:flex;"><span>      .rst  (rst),
+</span></span><span style="display:flex;"><span>      .count(count)
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    $dumpfile(<span style="color:#e6db74">&#34;result.vcd&#34;</span>);
+</span></span><span style="display:flex;"><span>    $dumpvars(<span style="color:#ae81ff">0</span>, tester);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Initialize inputs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    clk <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    rst <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    #<span style="color:#ae81ff">1</span>;  <span style="color:#75715e">// Wait for 2ns
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    rst <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">// Assert reset
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    #<span style="color:#ae81ff">1</span>;  <span style="color:#75715e">// Hold reset for 2ns
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    rst <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">// De-assert reset
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">integer</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>      #<span style="color:#ae81ff">1</span>;  <span style="color:#75715e">// Wait for 10ns (5 clock cycles)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $finish;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">always</span> #<span style="color:#ae81ff">1</span> clk <span style="color:#f92672">=</span> <span style="color:#f92672">~</span>clk;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iverilog -o main_test.vvp main_test.v
+</span></span><span style="display:flex;"><span>vvp main_test.vvp
+</span></span><span style="display:flex;"><span>vcd/vcd &lt; result.vcd &gt; result.txt
+</span></span></code></pre></div><p>下列是 <code>result.txt</code> :</p>
+<pre tabindex="0"><code>unknown token : ivl_for_loop0
+unknown token : dumpall
+global:
+  zoom: 9
+  date: Mon Jun  9 05:22:45 2025
+  total: 13
+  skip: 0
+  time:
+    scale: 1.00
+    unit: ns
+    line        : &#34;0                                                                                         10                                                                                        &#34;
+channels:
+  tester:
+    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
+  m:
+    clk         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁&#34;
+    rst         : &#34;▁▁▁▁▁▁▁▁▁╱▔▔▔▔▔▔▔▔╲▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁&#34;
+    count [1:0] : &#34;x        0        0        1        1        2        2        3        3        0        0        1        1        &#34;
+  :
+    i [31:0]    : &#34;x        x        0        1        2        3        4        5        6        7        8        9        A        &#34;
+</code></pre><blockquote>
+<p>有些助教對這種圖似乎有點「閱讀障礙」呢 ( ・∇・ ???)
+還說我放這種圖就是在耍酷給他看（我：？？？</p>
+<p>具體是哪位我就不公開了，大家心裡有數就行 ( ◠‿◠ )b</p></blockquote>
+<blockquote>
+<p>因此，如果你未來也要批改作業，建議可以留意一下，有些助教在評斷上可能會比較「有自己的想法」。
+（因為我確實有過一些不太愉快的經驗，當時真的感到蠻沮喪的 (/ _ ; )）</p></blockquote>
+<h1 id="總結">總結</h1>
+<p>恭喜你！現在你可以在 macOS、Linux 甚至是你的 android 手機、平板上快快樂樂寫 Verilog 了。</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>Insighted and suggested by Gemini 2.5 Flash</li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10192465">https://ithelp.ithome.com.tw/articles/10192465</a></li>
+<li><a href="https://easonchang.com/posts/verilog-on-macosx">https://easonchang.com/posts/verilog-on-macosx</a></li>
+<li><a href="https://fpgatek.com/fpga-design-flow/">https://fpgatek.com/fpga-design-flow/</a></li>
+<li><a href="https://hackmd.io/@ljcucc/rydRFzhCT">https://hackmd.io/@ljcucc/rydRFzhCT</a></li>
+</ul>
+<p>AI Contents:</p>
+<ul>
+<li>*: Refined by Gemini 2,5 Pro and Flash</li>
+</ul>
+
+				<aside>
+  <div>
+    <div>
+      <h3>Latest Posts</h3>
+    </div>
+    <div>
+      <ul>
+        
+        <li><a href="/zh-tw/posts/2025-06-08-verilog/">利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</a></li>
+        
+        <li><a href="/zh-tw/posts/2025-06-05-docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
+        
+        <li><a href="/zh-tw/posts/2025-03-15-travel-to-kenting/">用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</a></li>
+        
+        <li><a href="/zh-tw/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
+        
+        <li><a href="/zh-tw/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+
+				 
+<div>
+  本部落格所有文章除特別聲明外，全部採用  
+  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+    許可協議。轉載請註明來自 ljcucc (與本站網址)
+</div>
+
+
+			</div>
+		</article>
+	</main>
+
+
+	<footer>
+	<div>&copy; 2025 - <a class="no-underline" href="/"><b>ljcucc blog</b></a>
+	×
+	(<a class="no-underline" href="https://ljcu.cc"><b>Homesite</b></a>)
+	×
+	(<a class="no-underline" href="https://furries.init.engineer/@wolf"><b>Fediverse</b></a>)
+	×
+	(<a class="no-underline" href="https://bsky.app/profile/ljcu.cc"><b>Bluesky</b></a>)
+	×
+	(<a class="no-underline" href="https://github.com/ljcucc"><b>Github</b></a>)
+	</div>
+</footer>
+
+</body>
+
+<script>
+
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
+  gsap.set(selector, { opacity: 1 });
+
+  const beforeOpacity = 0;
+
+  gsap.from(selector, {
+    delay: 0.35,
+        ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+        duration: 0.6,
+        y: 8,
+        autoAlpha: beforeOpacity,
+        stagger: 0.05,
+        lazy: true,
+      });
+</script>
+</html>
