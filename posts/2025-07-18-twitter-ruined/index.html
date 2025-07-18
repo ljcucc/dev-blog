@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>
+	  body{
+			font-family:monospace;
+		}
+
+	</style>
+	<title>Something&#39;s totally wrong on Twitter - The service failure after Musk came in</title>
+	
+	<meta name="description" content="
+
+(I’m really so frustrated that I had to write a blog post to vent my experience.)
+One day, while I was changing my Display Name, I encountered a 500 Internal Server Error. After searching online, I realized that the situation was more complicated than I initially thought&hellip;
+
+Twitter has two types of names: the Handle, which is unique and cannot be duplicated, forming the foundation of the service. However, the Display Name can be duplicated, so there should be no reason for errors to occur&hellip;">
+	<meta property="twitter:image" content="cover.png">
+	
+
+	
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+
+  
+
+
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+
+		
+		<link href="https://fonts.googleapis.com/css2?family=Noto&#43;Serif&#43;JP:wght@500&amp;family=Oranienbaum:wght@300;400;500&amp;family=LXGW&#43;WenKai&#43;Mono&#43;TC&amp;display=swap" rel="stylesheet">
+
+		<style>
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		div,
+		article {
+		font-family: "Noto Serif JP", serif;
+		}
+
+
+		h1,
+		h2 {
+		font-family: "Oranienbaum", serif;
+		}
+		</style>
+		
+</head>
+<body>
+	<header>
+  
+
+  <div class="title">
+    <a href="/" class="no-underline"
+      >ljcucc blog</a
+    >
+  </div>
+
+  <div class="wrapper">
+    <div class="marquee">
+      
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      #ljcucc-blog-discuss:matrix.org</p>
+      <p>Hi! Welcome to my new blog (https://blog.ljc.cc)!! (｡･ω･｡)ﾉ And I&#39;ll post here about any new news, research, ideas and more... Welcome and have a stay here!             Come and join the offical discuss chat in matrix #ljcucc-blog-discuss:matrix.org      #ljcucc-blog-discuss:matrix.org</p>
+    </div>
+  </div>
+
+  <div class="title menu">
+    <a href="/tags" class="no-underline">menu</a>
+  </div>
+
+  
+</header>
+
+	
+	<main>
+		<article>
+			<h1 class="post">Something's totally wrong on Twitter - The service failure after Musk came in</h1>
+			<div class="metadata">
+			<b><time>2025-07-18</time></b>
+		       
+		           <a href="/tags/personal">Personal</a>
+        	       
+			</div>
+			<div>
+			    Estimated reading time: 3 minutes
+
+			</div>
+
+			
+<p>
+   Available in 
+  <a href="/zh-tw/posts/2025-07-18-twitter-ruined/" hreflang="zh-TW">
+    繁體中文
+  </a>
+  &nbsp;  
+</p>
+
+
+
+
+
+			<div class="content">
+				<p><img
+  src="/posts/2025-07-18-twitter-ruined/cover.png"
+  width="1527"
+  
+  height="783"
+  
+  srcset="/posts/2025-07-18-twitter-ruined/cover_hu_d8201e9f3f08fd5e.png 480w, /posts/2025-07-18-twitter-ruined/cover_hu_2bc60926c029a95e.png 1024w"
+  
+  loading="lazy"
+  
+  alt="Frame 1 (4)"
+  
+  
+  class="gallery-image"
+  data-flex-grow="195"
+  data-flex-basis="468px"
+  
+/>
+</p>
+<p>(I’m really so frustrated that I had to write a blog post to vent my experience.)</p>
+<p>One day, while I was changing my Display Name, I encountered a 500 Internal Server Error. After searching online, I realized that the situation was more complicated than I initially thought&hellip;</p>
+<hr>
+<p>Twitter has two types of names: the Handle, which is unique and cannot be duplicated, forming the foundation of the service. However, the Display Name can be duplicated, so there should be no reason for errors to occur&hellip;</p>
+<p>After investigating online, I found that this issue has been around for a while, but recent methods seem to no longer resolve it.</p>
+<p><a href="https://devcommunity.x.com/t/something-went-wrong-but-dont-fret-its-not-your-fault-profile-name/206807/36">Link to Community Discussion</a></p>
+<p>Initially, X Staff were confused and thought it was a problem with the Handle name. However, as mentioned earlier, the Display Name is different from the Handle name and does not have to be unique.</p>
+<p>In the comments, someone suggested trying an autoclicker to bypass the issue forcefully, but I only received a 429 error ( ；∀；).</p>
+<p>I wrote a simple little program that you can try as well:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> sleep
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pynput.mouse <span style="color:#f92672">import</span> Button, Controller
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mouse <span style="color:#f92672">=</span> Controller()
+</span></span><span style="display:flex;"><span>sleep(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>last_pos <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> mouse<span style="color:#f92672">.</span>position <span style="color:#f92672">!=</span> last_pos:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;mouse: </span><span style="color:#e6db74">{</span>mouse<span style="color:#f92672">.</span>position<span style="color:#e6db74">}</span><span style="color:#e6db74">, last: </span><span style="color:#e6db74">{</span>last_pos<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> last_pos <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        last_pos <span style="color:#f92672">=</span> mouse<span style="color:#f92672">.</span>position
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    mouse<span style="color:#f92672">.</span>press(Button<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>    mouse<span style="color:#f92672">.</span>release(Button<span style="color:#f92672">.</span>left)
+</span></span><span style="display:flex;"><span>    sleep(<span style="color:#ae81ff">0.005</span>)
+</span></span><span style="display:flex;"><span>    count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(count)
+</span></span></code></pre></div><h2 id="this-is-a-limitation-that-should-be-communicated-to-users">This is a Limitation That Should Be Communicated to Users</h2>
+<p>Just like character limits, imagine if one day X removed the interface for character limits from the software, and then users exceeded the limit and received a 500 error. The backlash would be enormous.</p>
+<blockquote>
+<p>This is a feature that should be clearly stated in the software and communicated to users, yet there is no information at all.</p></blockquote>
+<p>Similar issues have occurred before, such as the recent post-loading limit, where users could only load a certain number of posts per day. (It seems that this limit is not as strict now.)</p>
+<p>Everyone has tried to contact X, but only received standard responses with no actual contact methods.</p>
+<p>Just a few days ago, X Staff closed a forum that had been discussing &ldquo;non-technical issues&rdquo; for three years. The methods provided after the closure did not include any way to reach the official team or resolve issues.</p>
+<p>This seems to clearly suggest an attempt to cover up the situation.</p>
+<p>All these events have occurred since Elon Musk took over Twitter and implemented his policies, and we cannot rule out the influence of internal policies on this incident. Moreover, the official response to this issue has been completely absent from start to finish.</p>
+<p>(The incident began in February 2023, while Musk took over in April 2022.)</p>
+<blockquote>
+<p>Honestly, not fixing the problem and not responding positively is one thing&hellip; but under Elon Musk&rsquo;s policies, filling the software with a bunch of Premium ads does not solve the issue at all.</p></blockquote>
+<p>I can only say, do we really need a dictator to manage this platform?</p>
+
+
+				<aside>
+  <div>
+    <div>
+      <h3>Latest Posts</h3>
+    </div>
+    <div>
+      <ul>
+        
+        <li><a href="/posts/2025-07-18-twitter-ruined/">Something&#39;s totally wrong on Twitter - The service failure after Musk came in</a></li>
+        
+        <li><a href="/posts/2025-06-08-verilog/">Writing and Testing Verilog on macOS / Linux (and even Android) with Icarus Verilog</a></li>
+        
+        <li><a href="/posts/2025-06-05-docker-on-img/">Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</a></li>
+        
+        <li><a href="/posts/2025-03-15-travel-to-kenting/">Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</a></li>
+        
+        <li><a href="/posts/ic-forest-01/">Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+
+				 
+<div>
+  Unless specified, all blog posts are licensed under  
+  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a>
+   . Please credit &#34;ljcucc&#34; and this site&#39;s URL when reposting.
+</div>
+
+
+			</div>
+		</article>
+	</main>
+
+
+	<footer>
+	<div>&copy; 2025 - <a class="no-underline" href="/"><b>ljcucc blog</b></a>
+	×
+	(<a class="no-underline" href="https://ljcu.cc"><b>Homesite</b></a>)
+	×
+	(<a class="no-underline" href="https://furries.init.engineer/@wolf"><b>Fediverse</b></a>)
+	×
+	(<a class="no-underline" href="https://bsky.app/profile/ljcu.cc"><b>Bluesky</b></a>)
+	×
+	(<a class="no-underline" href="https://github.com/ljcucc"><b>Github</b></a>)
+	</div>
+</footer>
+
+</body>
+
+<script>
+
+  gsap.registerPlugin(CustomEase);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const selector = ".post, .metadata, .content, .summary, article>*, main>*";
+  
+  gsap.set(selector, { opacity: 1 });
+
+  const beforeOpacity = 0;
+
+  gsap.from(selector, {
+    delay: 0.35,
+        ease: CustomEase.create("custom", "0.2, 0.0, 0, 1.0"),
+        duration: 0.6,
+        y: 8,
+        autoAlpha: beforeOpacity,
+        stagger: 0.05,
+        lazy: true,
+      });
+</script>
+
+
+
+</html>

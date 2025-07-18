@@ -15,8 +15,11 @@
 	<meta name="description" content="
 前幾天打疫苗不舒服，停更了一段時間。而且期末終於結束了，雖然後面會有很多混雜期末時所做的一些決定，但還是有更多時間去思考更多細節了 (´▽｀)
 專案進行中，我越意識到原來設計一個計算機架構並不是這麼簡單的一件事情⋯⋯我一開始是直接用腦袋想和模擬，但越到後面發現，uxn 基本指令集就有 32 個，加上3個mode組合後共有 256 個指令集，要為 256 個指令設計一個 CPU 對於一個剛入學的大學生真的是一個有挑戰性的事情⋯⋯">
+	<meta property="twitter:image" content="cover.png">
 	
+
 	
+
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
@@ -88,7 +91,8 @@
         	       
 			</div>
 			<div>
-			閱讀時間大約 3 分鐘
+			   閱讀時間大約 5 分鐘
+
 			</div>
 
 			
@@ -115,12 +119,15 @@
 <li>Uxn 內建 Stack, Return Stack、Device I/O (<a href="https://wiki.xxiivv.com/site/varvara.html">Varvara</a>)，分別可以以不同的指令訪問。</li>
 <li>可以使用 <a href="https://wiki.xxiivv.com/site/uxntal.html">Uxntal (組語)</a> 和 <a href="https://wiki.xxiivv.com/site/bicycle.html">bicycle (組譯器)</a> 來組譯 uxn 的 ROM</li>
 </ul>
-<p>
-<figure>
-  <img src="./p2.png" alt="" />
-</figure>
-
-
+<p><img
+  src="/p2.png"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p><em>Uxn 會從 ROM 的 位址 0x0100 載入到 RAM 的 0x0100，通常在 ROM 內 0x0100 以前都會是空的。</em></p>
 <!-- 以上是我對 uxn 架構的想像圖，實際上uxn因為是虛擬機的關係，並不存在任何架構關係的問題。也因為他是虛擬機的關係，所以這個關係圖也沒有任何作用，存粹讓你可以更好地理解 uxn 有哪些重要的功能和部件。 -->
@@ -130,12 +137,15 @@
 * 歸納 uxn 的每個指令：歸納出 uxn 指令之間的關係，簡化處理器的設計
 * 選擇適合的控制單元和處理器指令集設計：在後續的幾個文章中我會試著探索不同的指令集實作架構，並且嘗試選擇和設計適合的架構 -->
 <h2 id="uxntal">Uxntal</h2>
-<p>
-<figure>
-  <img src="./p3.png" alt="" />
-</figure>
-
-
+<p><img
+  src="/p3.png"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p>Uxntal 和 uxn 密不可分，Uxntal 是轉為 uxn 設計的組語。對於基礎opcode uxn共有32個，並且分成 4 個區。</p>
 <ul>
@@ -322,6 +332,8 @@ step   original stack        register (flexable with 8-bits and 16-bits)
     <div>
       <ul>
         
+        <li><a href="/zh-tw/posts/2025-07-18-twitter-ruined/">Twitter 亂了套 - 馬斯克接手後的服務故障</a></li>
+        
         <li><a href="/zh-tw/posts/2025-06-08-verilog/">利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</a></li>
         
         <li><a href="/zh-tw/posts/2025-06-05-docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
@@ -329,8 +341,6 @@ step   original stack        register (flexable with 8-bits and 16-bits)
         <li><a href="/zh-tw/posts/2025-03-15-travel-to-kenting/">用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</a></li>
         
         <li><a href="/zh-tw/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
-        
-        <li><a href="/zh-tw/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
         
       </ul>
     </div>
@@ -387,4 +397,7 @@ step   original stack        register (flexable with 8-bits and 16-bits)
         lazy: true,
       });
 </script>
+
+
+
 </html>

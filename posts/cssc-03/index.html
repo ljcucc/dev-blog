@@ -15,8 +15,11 @@
 	<meta name="description" content="
 A few days ago, I felt unwell after getting a vaccine, so I paused updates for a while. And finally, the semester is over! Although there will be many decisions influenced by what I made during the finals period, I now have more time to think about more details (´▽｀)
 As the project progressed, I realized more and more that designing a computer architecture is not such a simple task&hellip; Initially, I just brainstormed and simulated in my head, but later on, I found that Uxn&rsquo;s basic instruction set alone has 32 instructions, and with 3 mode combinations, there are a total of 256 instructions. Designing a CPU for 256 instructions is truly a challenging endeavor for a university freshman&hellip;">
+	<meta property="twitter:image" content="cover.png">
 	
+
 	
+
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
@@ -88,7 +91,8 @@ As the project progressed, I realized more and more that designing a computer ar
         	       
 			</div>
 			<div>
-			 Estimated reading time: 8 minutes
+			    Estimated reading time: 8 minutes
+
 			</div>
 
 			
@@ -115,21 +119,27 @@ As the project progressed, I realized more and more that designing a computer ar
 <li>Uxn has built-in Stack, Return Stack, and Device I/O (<a href="https://wiki.xxiivv.com/site/varvara.html">Varvara</a>), which can be accessed with different instructions.</li>
 <li>You can use <a href="https://wiki.xxiivv.com/site/uxntal.html">Uxntal (assembly language)</a> and <a href="https://wiki.xxiivv.com/site/bicycle.html">bicycle (assembler)</a> to assemble Uxn&rsquo;s ROM.</li>
 </ul>
-<p>
-<figure>
-  <img src="./p2.png" alt="" />
-</figure>
-
-
+<p><img
+  src="/p2.png"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p><em>Uxn loads from ROM address 0x0100 into RAM address 0x0100; typically, the ROM before 0x0100 is empty.</em></p>
 <h2 id="uxntal">Uxntal</h2>
-<p>
-<figure>
-  <img src="./p3.png" alt="" />
-</figure>
-
-
+<p><img
+  src="/p3.png"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p>Uxntal and Uxn are inseparable; Uxntal is the assembly language designed for Uxn. For basic opcodes, Uxn has 32, divided into 4 sections.</p>
 <ul>
@@ -412,20 +422,26 @@ void loop() {
 </code></pre><blockquote>
 <p><em>The code might not be perfectly complete, but its structure is very simple. Feel free to take a look at what&rsquo;s inside; I won&rsquo;t elaborate further here.</em></p></blockquote>
 <p><em>The image below shows the final result from Processing</em>
-
-<figure>
-  <img src="./p1.jpg" alt="" />
-</figure>
-
-
+<img
+  src="/p1.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p><em>The image below shows the Arduino Mega used for this project</em>
-
-<figure>
-  <img src="./p2.jpg" alt="" />
-</figure>
-
-
+<img
+  src="/p2.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 
 				<aside>
@@ -436,6 +452,8 @@ void loop() {
     <div>
       <ul>
         
+        <li><a href="/posts/2025-07-18-twitter-ruined/">Something&#39;s totally wrong on Twitter - The service failure after Musk came in</a></li>
+        
         <li><a href="/posts/2025-06-08-verilog/">Writing and Testing Verilog on macOS / Linux (and even Android) with Icarus Verilog</a></li>
         
         <li><a href="/posts/2025-06-05-docker-on-img/">Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</a></li>
@@ -443,8 +461,6 @@ void loop() {
         <li><a href="/posts/2025-03-15-travel-to-kenting/">Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</a></li>
         
         <li><a href="/posts/ic-forest-01/">Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</a></li>
-        
-        <li><a href="/posts/cssc-03/">CSSC - EP.3: Instruction Set Analysis</a></li>
         
       </ul>
     </div>
@@ -501,4 +517,7 @@ void loop() {
         lazy: true,
       });
 </script>
+
+
+
 </html>

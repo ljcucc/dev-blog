@@ -1,6 +1,7 @@
 html {
   overflow-y: scroll;
   font-weight: 400;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -37,6 +38,10 @@ article {
     --precolor: #fff;
     --prebgcolor: #383838;
   }
+} */
+
+/* pre.mermaid {
+  background-color: transparent !important;
 } */
 
 p {
@@ -331,4 +336,13 @@ blockquote {
 
 .footnotes {
   word-wrap: break-word;
+}
+
+.preview p:has(img) {
+  img {
+    width: 100%;
+
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }

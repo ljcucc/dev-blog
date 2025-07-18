@@ -15,8 +15,11 @@
 	<meta name="description" content="
 Since the blog was set up relatively late, a lot of content has accumulated, which I&rsquo;ll be catching up on in the next few posts.
 The designs for the components I&rsquo;m about to introduce were actually implemented on breadboards several years before this project even began. This time, with the school&rsquo;s final project deadline approaching, I decided to revisit my previous work and incorporate new ideas, embarking on a brand-new CPU project.">
+	<meta property="twitter:image" content="cover.png">
 	
+
 	
+
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
@@ -90,7 +93,8 @@ The designs for the components I&rsquo;m about to introduce were actually implem
         	       
 			</div>
 			<div>
-			 Estimated reading time: 5 minutes
+			    Estimated reading time: 5 minutes
+
 			</div>
 
 			
@@ -128,12 +132,15 @@ The designs for the components I&rsquo;m about to introduce were actually implem
 <p>Therefore, to avoid contact issues caused by the instability of breadboards, I decided to use direct soldering, soldering the electronic components onto a perfboard (general purpose PCB). This ensures greater circuit stability and reliability, allowing for long-term use and making the circuit less susceptible to issues during transportation, which is crucial for delivering it to school for the assignment.</p>
 <p>.</p>
 <h1 id="design-implementation">Design Implementation</h1>
-<p>
-<figure>
-  <img src="./p1.jpg" alt="" />
-</figure>
-
-
+<p><img
+  src="/p1.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p><em>The image above shows the final assembled result.</em></p>
 <p><em>The metal box cropped out on the left side of the image is a 5V 10A power supply.</em></p>
@@ -144,12 +151,22 @@ The designs for the components I&rsquo;m about to introduce were actually implem
 <p>.</p>
 <h1 id="component-introduction">Component Introduction</h1>
 <p>Next are the actual images of the components.</p>
-<p>
-<figure>
-  <img src="p4.png" alt="" />
-</figure>
-
-
+<p><img
+  src="/posts/cssc-01/p4.png"
+  width="712"
+  
+  height="1020"
+  
+  srcset="/posts/cssc-01/p4_hu_5828f65af816e227.png 480w, /posts/cssc-01/p4_hu_59d4dcc3df46a878.png 1024w"
+  
+  loading="lazy"
+  
+  
+  class="gallery-image"
+  data-flex-grow="69"
+  data-flex-basis="167px"
+  
+/>
 </p>
 <p><em>The diagram shows the relationships between the various components. It includes two parts: Registers (which have the property of directly connecting their output to the ALU unit) and the ALU (currently only capable of addition and subtraction).</em></p>
 <p>As just introduced, there are broadly two types of components:</p>
@@ -158,22 +175,28 @@ The designs for the components I&rsquo;m about to introduce were actually implem
 <li>ALU (Currently only addition and subtraction)</li>
 </ul>
 <h2 id="register-ab">Register (A,B)</h2>
-<p>
-<figure>
-  <img src="./p2.jpg" alt="" />
-</figure>
-
-
+<p><img
+  src="/p2.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p>This section focuses on Register (A,B), accompanied by an image to show its appearance. The design reference is <a href="https://eater.net/8bit/registers">Ben Eater&rsquo;s Register design</a>, but we made modifications to the bus interface and the internal connection to the ALU, and adjusted the male header pinout. This design is a crucial part, used for storing the two values for addition and subtraction operations.</p>
 <p>.</p>
 <h2 id="alu">ALU</h2>
-<p>
-<figure>
-  <img src="./p3.jpg" alt="" />
-</figure>
-
-
+<p><img
+  src="/p3.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p>This section focuses on the ALU, accompanied by an image to show its appearance. The design reference is <a href="https://eater.net/8bit/alu">Ben Eater&rsquo;s ALU design</a>, but we made modifications to the bus interface and the ALU output for debugging, and adjusted the male header pinout. The ALU (Arithmetic Logic Unit) is a vital part of computer hardware, responsible for processing arithmetic and logical operations. Our ALU currently supports addition and subtraction; these operations use Register A and B to store data during computation.</p>
 <p>.</p>
@@ -192,6 +215,8 @@ The designs for the components I&rsquo;m about to introduce were actually implem
     <div>
       <ul>
         
+        <li><a href="/posts/2025-07-18-twitter-ruined/">Something&#39;s totally wrong on Twitter - The service failure after Musk came in</a></li>
+        
         <li><a href="/posts/2025-06-08-verilog/">Writing and Testing Verilog on macOS / Linux (and even Android) with Icarus Verilog</a></li>
         
         <li><a href="/posts/2025-06-05-docker-on-img/">Transform Your Chromebook into a Docker Dev Machine with Virtual Disks</a></li>
@@ -199,8 +224,6 @@ The designs for the components I&rsquo;m about to introduce were actually implem
         <li><a href="/posts/2025-03-15-travel-to-kenting/">Explore Kenting for Free with TPASS: Commute from Kaohsiung Main Station to Hengchun and Kenting – All Free!</a></li>
         
         <li><a href="/posts/ic-forest-01/">Ichigojam - A Living Fossil in the Integrated Circuit Forest (1)</a></li>
-        
-        <li><a href="/posts/cssc-03/">CSSC - EP.3: Instruction Set Analysis</a></li>
         
       </ul>
     </div>
@@ -257,4 +280,7 @@ The designs for the components I&rsquo;m about to introduce were actually implem
         lazy: true,
       });
 </script>
+
+
+
 </html>

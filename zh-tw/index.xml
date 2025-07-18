@@ -6,8 +6,15 @@
     <description>Recent content on ljcucc blog</description>
     <generator>Hugo</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Sun, 08 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="/zh-tw/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Twitter 亂了套 - 馬斯克接手後的服務故障</title>
+      <link>/zh-tw/posts/2025-07-18-twitter-ruined/</link>
+      <pubDate>Fri, 18 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>/zh-tw/posts/2025-07-18-twitter-ruined/</guid>
+      <description>&lt;p&gt;&lt;img&#xA;  src=&#34;/zh-tw/posts/2025-07-18-twitter-ruined/cover.png&#34;&#xA;  width=&#34;1527&#34;&#xA;  &#xA;  height=&#34;783&#34;&#xA;  &#xA;  srcset=&#34;/zh-tw/posts/2025-07-18-twitter-ruined/cover_hu_d8201e9f3f08fd5e.png 480w, /zh-tw/posts/2025-07-18-twitter-ruined/cover_hu_2bc60926c029a95e.png 1024w&#34;&#xA;  &#xA;  loading=&#34;lazy&#34;&#xA;  &#xA;  alt=&#34;Frame 1 (4)&#34;&#xA;  &#xA;  &#xA;  class=&#34;gallery-image&#34;&#xA;  data-flex-grow=&#34;195&#34;&#xA;  data-flex-basis=&#34;468px&#34;&#xA;  &#xA;/&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;（我是真的氣到，專門寫一個 blog post 噴）&lt;/p&gt;&#xA;&lt;p&gt;某天我在更改 Display Name，發現得到 500 內部錯誤。在網上搜尋後，我才發現事情沒有想得這麼簡單……&lt;/p&gt;</description>
+    </item>
     <item>
       <title>利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</title>
       <link>/zh-tw/posts/2025-06-08-verilog/</link>

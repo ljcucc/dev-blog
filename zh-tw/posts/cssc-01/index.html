@@ -15,8 +15,11 @@
 	<meta name="description" content="
 因為blog比較晚才架設的關係，所以累積了比較多的東西，會在後面幾個post一起補上。
 這次要介紹的元件的設計早在專案開始前的幾年前就已經在breadboard上實作過，這次因為剛好遇到學校的期末專題，就想要以重現之前的專案、實踐新的計畫為題，製作一個全新的CPU計畫。">
+	<meta property="twitter:image" content="cover.png">
 	
+
 	
+
 	<link rel="stylesheet" href="/css/style.css">
 	
 	
@@ -90,7 +93,8 @@
         	       
 			</div>
 			<div>
-			閱讀時間大約 1 分鐘
+			   閱讀時間大約 2 分鐘
+
 			</div>
 
 			
@@ -128,12 +132,15 @@
 <p>因此，為了避免 breadboard 的不固定性導致的接觸不良問題，我決定使用直接焊接的方式，將電子元件焊在萬用板（General purpose PCB）上。這樣可以確保電路更穩定、更可靠，並且可以長期使用，運輸時電路也不太容易受到影響，這樣我就可以運到學校教作業。</p>
 <p>.</p>
 <h1 id="設計的實作">設計的實作</h1>
-<p>
-<figure>
-  <img src="./p1.jpg" alt="" />
-</figure>
-
-
+<p><img
+  src="/p1.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p><em>上圖為最終拼裝結果</em></p>
 <p><em>圖片左側被裁切掉的鐵盒子是一個 5V 10A 的電源供應器。</em></p>
@@ -144,12 +151,22 @@
 <p>.</p>
 <h1 id="部件介紹">部件介紹</h1>
 <p>接下來是部件的實際圖片。</p>
-<p>
-<figure>
-  <img src="p4.png" alt="" />
-</figure>
-
-
+<p><img
+  src="/zh-tw/posts/cssc-01/p4.png"
+  width="712"
+  
+  height="1020"
+  
+  srcset="/zh-tw/posts/cssc-01/p4_hu_5828f65af816e227.png 480w, /zh-tw/posts/cssc-01/p4_hu_59d4dcc3df46a878.png 1024w"
+  
+  loading="lazy"
+  
+  
+  class="gallery-image"
+  data-flex-grow="69"
+  data-flex-basis="167px"
+  
+/>
 </p>
 <p><em>圖中展示了各元件之間的關係圖。其中包含兩部分： Register（具有 Output 之直接連接 ALU 單元的性質）、ALU （目前僅具有加減法運算功能）。</em></p>
 <p>剛剛介紹過了，元件大致上有兩種：</p>
@@ -158,22 +175,28 @@
 <li>ALU （目前只有加減法）</li>
 </ul>
 <h2 id="register-ab">Register (A,B)</h2>
-<p>
-<figure>
-  <img src="./p2.jpg" alt="" />
-</figure>
-
-
+<p><img
+  src="/p2.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p>這個部分的主題是 Register (A,B)，附有一張圖片來呈現它的外觀。設計的參考來源是 <a href="https://eater.net/8bit/registers">Ben Eater 的 Register 設計</a>，但是我們對於 bus 接口和 internal connection to ALU 進行了修改，並對公排針 pinout 進行了調整。這個設計是一個重要的部分，用於存儲加法和減法運算的兩個數值。</p>
 <p>.</p>
 <h2 id="alu">ALU</h2>
-<p>
-<figure>
-  <img src="./p3.jpg" alt="" />
-</figure>
-
-
+<p><img
+  src="/p3.jpg"
+  
+  
+  
+  loading="lazy"
+  
+  
+/>
 </p>
 <p>這個部分的主題是 ALU，附有一張圖片來呈現它的外觀。設計的參考來源是 <a href="https://eater.net/8bit/alu">Ben Eater 的 ALU 設計</a>，但是我們對於 bus 接口和ALU output的debug 進行了修改，並對公排針 pinout 進行了調整。ALU (Arithmetic Logic Unit)是電腦硬體中的一個重要部分，負責處理算術運算和邏輯運算。我們的ALU能夠實現的功能包含加法、減法，這些運算在運算過程中會用到 Register A 與 B 來儲存資料。</p>
 <p>.</p>
@@ -192,6 +215,8 @@
     <div>
       <ul>
         
+        <li><a href="/zh-tw/posts/2025-07-18-twitter-ruined/">Twitter 亂了套 - 馬斯克接手後的服務故障</a></li>
+        
         <li><a href="/zh-tw/posts/2025-06-08-verilog/">利用 Icarus Verilog 在 macOS / Linux (甚至 Android) 上撰寫和測試 Verilog</a></li>
         
         <li><a href="/zh-tw/posts/2025-06-05-docker-on-img/">在有限空間的電腦上跑大檔案的 docker 儲存</a></li>
@@ -199,8 +224,6 @@
         <li><a href="/zh-tw/posts/2025-03-15-travel-to-kenting/">用 TPASS 免費暢遊墾丁 - 從高雄火車站到恆春、墾丁，通勤全部免費</a></li>
         
         <li><a href="/zh-tw/posts/update-2023-03/">Wiki rebrand - Update 2023-03</a></li>
-        
-        <li><a href="/zh-tw/posts/ic-forest-01/">Ichigojam - 集成晶體森林 裡的 活化石 (1)</a></li>
         
       </ul>
     </div>
@@ -257,4 +280,7 @@
         lazy: true,
       });
 </script>
+
+
+
 </html>
